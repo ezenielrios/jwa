@@ -94,7 +94,7 @@ Customer
 	Your final bill after 20 % discount is : 68000 USD
 
 
-
+<code>
 Solution :
 
 package com.training.jwa;
@@ -122,6 +122,7 @@ public class Customer {
 }
 
 
+</code>
 
 Classes and Objects
 ======================
