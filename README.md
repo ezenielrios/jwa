@@ -59,17 +59,6 @@ Converts the java code into bytecodes
 
 
 
-Access specifiers in java
-====================
-
-4 access specifiers
-
-
-public
-private
-default
-protected
-
 Hands on - 20 minutes
 
 
@@ -216,12 +205,241 @@ Tea extends Beverages
 
 
 
+Access specifiers in java
+====================
+
+4 access specifiers
+
+
+public		- least restrictive , everybody can access it
+private		- most restrictive, nobody can access it	
+default		- package access, only the classes in the same package can access 
+protected		- package + child clasess can access 
 
 
 
 
+Access Modifiers
+Access modifiers are keywords which define the ability of other code to access the given entity. Modifiers can be placed on classes, interfaces, enums, and class members. The access modifiers are listed below:
+
+Modifier	Access Level
+public	Available anywhere
+protected	Within the same package, and this class' sub-classes
+default	Within the same package
+private	Only within the same class
+The default access level requires additional clarification - this access level is "default" because there is no keyword to be used. This access level is also known as "package private".
+
+Using private modifiers on instance variables - along with public getter and setter methods - helps with encapsulation, which is one of the pillars of object-oriented programming.
 
 
+non access modifiers in java 
+=====================
+
+static, final, abstract 
+
+
+Variables scopes in java
+==================
+
+4 types
+
+local
+instance
+class/global
+block 
+
+
+When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides. The different scopes of a variable in Java are:
+
+Instance, or object, scope
+Class, or static, scope
+Method scope
+Block scope
+
+Instance scope means that the variable is attached to individual objects created from the class. When an instance-scoped variable is modified, it has no effect on other, distinct objects of the same class.
+
+Class scoped variables reside on the class definition itself. This means that when objects update a class-scoped variable, the change is reflected across all instances of the class. Class scope is declared with the static keyword. Methods can also be declared as class scope. However, static methods cannot invoke instance methods or variables (think about it: which specific object would they reference?). Static methods and variables should be referenced through the class directly, not through an object. For example: MyClass.myStaticMethod() or MyClass.myStaticVariable.
+
+Method scope is the scope of a variable declared within a method block, whether static or instance. Method-scoped variables are only available within the method they are declared; they do not exist after the method finishes execution (the stack frame is popped from the stack and removed from memory after execution).
+
+Block scoped variables only exist within the specific control flow block, of which there are several in Java: for, while, and do-while loops, if/else-if/else blocks, switch cases, or even just regular blocks of code declared via curly braces ({}). After the block ends, variables declared within it are no longer available.
+
+
+<pre>
+
+package com.training.jwa;
+
+public class ScopeVariableDemo {
+
+	int num1=100;		//instance scope
+	static int maxAge = 120;	//class/global scope
+	public void display1() 
+	{
+		int num2 = 200;		//local/method scope
+		
+		for(int i=1;i<=3;i++) {	//block scope
+			System.out.println(i); //1,2,3
+		}
+		
+	}
+	public void display2()
+	{
+		num1=10;
+		
+	}
+	public static void main(String[] args)
+	{
+		int result =299;		//local scope
+		
+	}
+}
+
+</pre>
+
+
+Constructors in java
+===================
+
+is a special method which will have same name as the class name
+it does not have any return type. not even void
+which will gets called automatically whenever you create an object
+it is used to initialize instance variables
+
+
+<pre>
+
+package com.training.jwa;
+/*
+ * Constructors in java
+===================
+
+is a special method which will have same name as the class name
+it does not have any return type. not even void
+it will gets called automatically whenever you create an object
+it is used to initialize instance/member variables
+ */
+public class Customer {
+	
+	int discount = 25;
+	int totalBillAmount = 100000;
+	
+
+	public Customer() {		//default constructor
+		System.out.println("Constructor called");
+		totalBillAmount = 100;
+		discount = 25;
+	}
+	public void sayHello() {
+		System.out.println("Hello");
+	}
+	public void payBill() {
+		int amount= applyDiscount();
+		System.out.println("Your final bill after discount is : " + amount);
+	}
+
+	public int applyDiscount() {
+		System.out.println("should apply the discount of " + discount + "% in final amount");
+		System.out.println("Applying " + discount + "%"); // Applying 20%
+		//local variable
+		int finalBillAmount = totalBillAmount - ( (totalBillAmount /100) * discount);
+		return finalBillAmount;
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Customer 1");
+		Customer c1 = new Customer();
+		c1.payBill();
+		
+		
+		System.out.println("\nCustomer 2");
+		Customer c2 = new Customer();
+		c2.payBill();
+	}
+}
+
+
+</pre>
+
+
+JUnit
+------------------------
+
+TDD
+When developing software, it is important to ensure that most if not all of the code being written is tested to verify the functionality of the code. One way to ensure this is to follow a process called test-driven development, or TDD.
+
+TDD Process
+The TDD process consists of writing unit tests first, before the application code has been written. Then, code can be written to make the test pass and the process can be completed for each piece of functionality required. Thus, the process is:
+
+Write a unit test
+Run the test => test will fail
+
+Fix the test by writing application code
+Retest until the test passes
+Repeat
+Following the TDD process can be useful for ensuring that a valid unit tests always exists for any class or method that is written. Later, when refactoring code, the unit tests give us confidence that we can change the source code without breaking existing functionality. If we mess up somewhere, when the unit tests are run we can pinpoint exactly where the problem lies. This makes debugging much easier.
+
+Unit Testing
+Unit testing is the testing of individual software components in isolation from the rest of the system. This is done by writing unit tests which execute the code we want to inspect. When the code under test deviates from an expected outcome or behavior, the test will fail. If a test passes, it means the application performs as expected (unless there is a problem with the test itself). In Java, the most common unit testing framework is called JUnit.
+
+
+
+-- Junit
+	
+- a framework used to write unit test framework
+- it has lot of annotations like @Test,@Before,@After,@BeforeEach,@AfterEach and many more 
+
+What is JUnit ?
+	- open source java unit test framework
+	- junit5 is known as Jupiter
+	You need JDK1.8 for jupiter
+	** Compiler to JDK 1.8 
+
+
+@Test
+
+Use case : We want to create a method to add two numbers 
+
+expected
+actual
+
+<pre>
+package com.training.jwa;
+
+public class Calculator {
+
+	public int addNumbers(int i, int j) {
+		return i+j;
+	}
+
+}
+
+
+
+
+package com.training.jwa;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+public class CalculatorTest {
+	
+	@Test
+	void testAddNumbers1() {
+		int expected=20;
+		Calculator calc = new Calculator();
+		int actual = calc.addNumbers(10,10);
+		assertEquals(expected, actual);	
+	}
+	
+	@Test
+	void testAddNumbers2() {
+		int expected=20;
+		Calculator calc = new Calculator();
+		int actual = calc.addNumbers(3,17);
+		assertEquals(expected, actual);	
+	}
+}
+
+</pre>
 
 
 
