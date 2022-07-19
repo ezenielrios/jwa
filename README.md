@@ -445,6 +445,235 @@ public class CalculatorTest {
 </pre>
 
 
+============================================================================
+
+Day2 Notes
+
+
+JUnit Testing - More
+Selenium 
+
+@Test
+
+@DisplayName
+@Order
+@MethodOrderer
+
+
+Why do we want to order the tests?
+
+How you order the tests in junit ? 
+
+@Order annotation
+
+@Test - declares a method as a test method
+	@BeforeClass - declares a setup method that runs once, before all other methods in the class
+@Before - declares a setup method that runs before each test method
+@After - declares a tear-down method that runs after each test method
+	@AfterClass - declares a tear-down method that runs once, after all other methods in the class
+
+
+
+multiply (int num1,int num2)
+{
+	return num1*num2;
+}
+
+
+Test this method now 
+
+Selenium
+
+What is selenium ?
+==========================
+Selenium is an open-source tool that automates web browsers.
+Selenium is an open source project for web browser automation.
+ This means that Selenium consists of software that can control a web browser and perform actions like any human user could - for example, navigating to a website, clicking buttons, and filling out forms.
+Selenium is an open source umbrella project for a range of tools and libraries aimed at supporting browser automation
+
+
+*** What is selenium web driver ?
+Selenium WebDriver is the core of Selenium which provides an API in many different languages for programmers to write code to manipulate the browser.
+
+
+Use case : I want the selenium to open the chrome browser and visit google.com
+package com.training.jwa;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumDemo1 {
+
+	public static void main(String[] args) {
+		System.setProperty
+		("webdriver.chrome.driver","C:\\Users\\tufai\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://www.google.com");
+
+	}
+
+}
+
+
+*** What is the use of WebDriverManager in selenium ?
+
+
+WebDriverManager - which helps to setup the drivers of different browsers without downloading them manually.
+
+WebDriverManager is an open-source Java library that carries out the management (i.e., download, setup, and maintenance) of the drivers required by Selenium WebDriver (e.g., chromedriver, geckodriver, msedgedriver, etc.) in a fully automated manner. 
+
+
+
+
+Use case : I want the selenium to open the chrome browser or edge browser and visit google.com
+
+I can use webdrivermanager from bonigracia to avoid 
+
+
+
+Use case :: I want to test amazon search functionality
+
+a) Setup the driver and open the browser
+b) Navigate to amazon.in
+
+c) maximize the browser
+d) search for the textbox where to type
+
+
+
+
+<input type="text" id="twotabsearchtextbox" value="ajanta designer wall clock copper" name="field-keywords" autocomplete="off" placeholder="" class="nav-input nav-progressive-attribute" dir="auto" tabindex="0" aria-label="Search">
+
+What is locators in selenium ?
+
+A locator is a way to identify elements on a page. It is the argument passed to the Finding element methods.
+
+List out some locators in selenium ?
+class name	Locates elements whose class name contains the search value (compound class names are not permitted)
+css selector	Locates elements matching a CSS selector
+id	Locates elements whose ID attribute matches the search value
+name	Locates elements whose NAME attribute matches the search value
+link text	Locates anchor elements whose visible text matches the search value
+partial link text	Locates anchor elements whose visible text contains the search value. If multiple elements are matching, only the first one will be selected.
+tag name	Locates elements whose tag name matches the search value
+xpath	Locates elements matching an XPath expression
+
+What is xpath ?
+What is XPath in Selenium?
+XPath is a technique in Selenium to navigate through the HTML structure of a page. 
+XPath enables testers to navigate through the XML structure of any document, and this can be used on both HTML and XML documents
+
+XPath in Selenium is an XML path used for navigation through the HTML structure of the page.
+ It is a syntax or language for finding any element on a web page using XML path expression. XPath can be used for both HTML and XML documents to find the location of any element on a webpage using HTML DOM structure.
+
+
+Wait in selenium
+=================
+
+Implicit : (Automatic)
+The Implicit Wait in Selenium is used to tell the web driver to wait for a certain amount of time before it throws a “No Such Element Exception”. The default setting is 0. Once we set the time, the web driver will wait for the element for that time before throwing an exception.
+
+
+Implicit Wait syntax:
+driver.manage().timeouts().implicitlyWait(TimeOut, TimeUnit.SECONDS);
+
+
+Explicit : 
+The Explicit Wait in Selenium is used to tell the Web Driver to wait for certain conditions (Expected Conditions) or maximum time exceeded before throwing “ElementNotVisibleException” exception. It is an intelligent kind of wait, but it can be applied only for specified elements. It gives better options than implicit wait as it waits for dynamically loaded Ajax elements.
+
+Explicit Wait syntax:
+WebDriverWait wait = new WebDriverWait(WebDriverRefrence,TimeOut);
+
+
+<pre>
+
+package com.training.jwa;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+/*
+ * Use case :: I want to test amazon search functionality
+ */
+public class AmazonSerachFunctionalityTest {
+
+	public static void main(String[] args) {
+		String browserName = "chrome";
+		
+		WebDriver driver = null;
+		if(browserName.equals("edge")) {
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+		}
+		else if(browserName.equals("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+		//implicit waits in selenium
+		driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+		
+		driver.get("http://www.amazon.in");
+		
+		driver.manage().window().maximize();
+		
+		//driver.findElement(By.id("twotabsearchtextbox")).sendKeys("iphones");
+		
+		//locating text box by using xpath
+		//relative	
+		//driver.findElement(By.xpath("//*[@id=\"twotabsearchtextbox\"]")).sendKeys("mouse");
+		//absolute path
+		driver.findElement(By.xpath("/html/body/div[1]/header/div/div[1]/div[2]/div/form/div[2]/div[1]/input")).sendKeys("speakers");
+		
+		//wait for 2 minutes
+		//explicit wait
+		WebDriverWait wait = new WebDriverWait(driver, 120);
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"nav-search-submit-button\"]")));
+		//hands on 
+		//locate the search button and click on that, so that search result gets displayed
+		driver.findElement(By.xpath("//*[@id=\"nav-search-submit-button\"]")).click();
+	}
+}
+
+
+</pre>
+
+What is JDK , JRE and JVM ? Java development kit, java runtime environment, java virtual machine
+What is Java ? a strongly typed, object oriented, platform independent language
+What are access modifiers in java ? default, private, public, protected
+How default and protected are different ? protected is same package and child class
+What are the different primitive data types that are there in Java ? int, byte, short, long, float, double, boolean and char
+What are different scopes of a variables in java ? Instance, class, local, block
+What is a constructor? method that shares same name as a class.
+Can constructor can be overloaded?  Yes 
+What is the difference between overloading and overriding ? overloading 
+A mechanism of wrapping/binding of data is called Encapsulation. Is that True?? yes
+Is Overriding a polymorphism concept? yes
+Is Bubble Sort the simplest algorithm to Sort the elements in ascending Order? yes, quick sort 
+Is following modifier concept correct? Public --> The code is accessible for only to particular classes False
+
+
+What is unit testing ? Testing of each individual component of software
+What is junit ? - Is an open source java testing framework. It have many annotations
+What is the latest version of junit ?- JUnit 5
+List out some junit annotations? @BeforeAll, @BeforeEach, @AfterAll, @AfterEach, @Test, @DisplayName, @Order
+List out some junit assert methods ? AssertEqual, AssertNotEqual, AssertThrows
+
+What is selenium? an open source tool for automating web browsers, used for testing
+What is web driver ? Core of selenium, provides an api in different languages for programmers to write code and manipulate the browser
+What is web driver manager ? A framework that lets us use different web drivers without needing to download each one individually
+What is xpath?- Is a syntax used to locate an element in a web application
+What are locators in selenium ?- ID, xpath, className, CSS selector, partial link
+What is the difference between implicit and explicit wait in selenium ? implicit wait is waiting for a period while explicit wait is for a specific element
+Is default wait time of Implicit wait in Selenium 0? yes
+Selenium can test both Web and Desktop Applications. Is the statement correct? No it is a tool for testing web application
+		The simple answer is no. Selenium is designed to automate web applications, not desktop applications.
 
 
 
@@ -452,36 +681,7 @@ public class CalculatorTest {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+QC will be assigned at the end of the second week which is 7/27 & 7/28
 
 
 

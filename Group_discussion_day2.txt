@@ -1,0 +1,29 @@
+What is JDK , JRE and JVM ?
+What is Java ?
+What are access modifiers in java ?
+How default and protected are different ?
+What are the different primitive data types that are there in Java ?
+What are different scopes of a variables in java ?
+What is a constructor?
+Can constructor can be overloaded?
+What is the difference between overloading and overriding ?
+A mechanism of wrapping/binding of data is called Encapsulation. Is that True??
+Is Overriding a polymorphism concept?
+Is Bubble Sort the simplest algorithm to Sort the elements in ascending Order?
+Is following modifier concept corect? Public --> The code is accessible for only to particular classes
+
+
+What is unit testing ?
+What is junit ?
+What is the latest version of junit ?
+List out some junit annotations?
+List out some junit assert methods ?
+
+What is selenium?
+What is web driver ?
+What is web driver manager ?
+What is xpath?
+What are locators in selenium ?
+What is the difference between implicit and explicit wait in selenium ?
+Is default wait time of Implicit wait in Selenium 0?
+Selenium can test both Web and Desktop Applications. Is the statement correct?
