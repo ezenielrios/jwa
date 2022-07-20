@@ -685,3 +685,531 @@ QC will be assigned at the end of the second week which is 7/27 & 7/28
 
 
 
+Day3
+=====================================================
+BDD
+Cucumber
+POM - selenium
+Page Factory
+Glue code
+Gherkin
+Gherkin keywords
+
+Testing 
+features
+
+
+BDD :
+BDD framework i.e. Behavior Driven Development is a software development approach that allows the tester/business analyst to create test cases in simple text language (English).
+
+
+
+when i visit google.com
+then i type mobile
+then it should give the search results
+
+Cucumber – A BDD Framework Tool
+Cucumber is a Behavior Driven Development (BDD) framework tool to write test cases.
+
+** Cucumber uses Gherkin language ( its like simple language with some keywords )
+
+ its like simple language with some keywords
+
+
+THEN
+WHEN
+SCENARIO
+SCENARIO OUTLINE
+AND
+
+Selenium : is an automation tool for functional testing of web based applications.
+
+
+Use case : saucedemo.com and check whether login is successful or not with valid credentials
+
+
+Feature file - where you will be writing the steps
+
+Feature : user validation 
+Scenario: check whether login is successful or not with valid credentials
+
+Given user is an login page
+When user enters username and password
+And user clicks on submit button
+Then  user is navigated to the home page
+
+
+Glue code : a class which implements all the steps 
+ The glue is a part of Cucumber options that describes the location and path of the step definition file.
+
+
+
+
+Data driven testing
+=====================
+
+
+
+We can use Scenario Outline instead of Scenario for repetive tests
+
+
+Scenario Outline
+Examples 	- are there to provide parameters
+
+
+Scenario outline is exactly similar to the scenario structure, but the only difference is the provision of multiple inputs.
+
+
+Examples : are used to provide data to scenario outline
+
+Examples keyword is used to specify values for each parameter used in the scenario. Scenario Outline keyword must always be followed by the keyword Examples
+
+
+
+Feature: user validation
+
+  Scenario Outline: check whether login is successful or not with valid credentials
+    Given user is an login page
+    When user enters <username> and <password>
+    And user clicks on submit button
+    Then user is navigated to the home page
+
+    Examples: 
+      | username        | password     |
+      | standard_user   | secret_sauce |
+      | locked_out_user | secret_sauce |
+      | problem_user    | secret_sauce |
+      | daniel          | richard      |
+      | tufail          | ahmed        |
+
+
+
+Glue Code 
+
+package com.training.jwa;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class LoginTest {
+
+	String browserName = "chrome";
+	WebDriver driver = null;
+	
+	@Given("user is an login page")
+	public void user_is_an_login_page() {
+		
+		if(browserName.equals("edge")) {
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+		}
+		else if(browserName.equals("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+		driver.get("https://www.saucedemo.com/");
+		driver.manage().window().maximize();
+	    System.out.println("step - user is an login page");
+	}
+
+	@When("user enters {string} and {string}")
+	public void user_enters_username_and_password(String username,String password) {
+		driver.findElement(By.xpath("//*[@id=\"user-name\"]")).sendKeys(username);
+		driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys(password);
+	    System.out.println("step - user enters username and password");
+
+	}
+
+	@When("user clicks on submit button")
+	public void user_clicks_on_submit_button() {
+	    System.out.println("step - user clicks on submit button");
+	    driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
+
+	}
+
+	@Then("user is navigated to the home page")
+	public void user_is_navigated_to_the_home_page() {
+	    System.out.println("step - user is navigated to the home page");
+	    String actualURL = driver.getCurrentUrl();
+	    String expectedURL = "https://www.saucedemo.com/inventory.html";
+	    assertEquals(expectedURL, actualURL);
+
+	}
+	
+}
+
+----------------------------
+What is background in cucumber ?
+
+Background in Cucumber is used to define a step or series of steps that are common to all the tests in the feature file.
+
+--------------------------
+
+What is POM in selenium ?
+Page object model
+
+- design pattern to create repository
+- a class is created for each page to identify web elements of that page
+- it can also contain methods to do action on the objects
+- separates test objects and test scripts
+
+Advantages
+--------------
+Easy maintainence
+Readability
+Easier
+
+
+package com.training.jwa;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+
+	WebDriver driver;
+	By txt_username = By.id("user-name");
+	By txt_password = By.id("password");
+	By btn_login = By.id("login-button");
+	
+	By btn_logout = By.id("logout");
+	
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public void enterUsername(String username) {
+		driver.findElement(txt_username).sendKeys(username);
+	}
+	public void enterPassword(String password) {
+		driver.findElement(txt_password).sendKeys(password);
+	}
+	
+	public void clickLogin() {
+		driver.findElement(btn_login).click();
+	}
+	
+	public boolean checkLogoutDisplayed() {
+		return driver.findElement(btn_logout).isDisplayed();
+	}
+	public boolean checkLoginDisplayed() {
+		return driver.findElement(btn_login).isDisplayed();
+	}
+}
+
+
+
+----------
+
+package com.training.jwa;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class LoginTest {
+
+	String browserName = "chrome";
+	WebDriver driver = null;
+	LoginPage loginPage ;
+	@Given("user is an login page")
+	public void user_is_an_login_page() {
+		
+		if(browserName.equals("edge")) {
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+		}
+		else if(browserName.equals("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+		loginPage = new LoginPage(driver);
+		driver.get("https://www.saucedemo.com/");
+		driver.manage().window().maximize();
+	    System.out.println("step - user is an login page");
+	}
+
+	@When("user enters {string} and {string}")
+	public void user_enters_username_and_password(String username,String password) {
+	//	driver.findElement(By.xpath("//*[@id=\"user-name\"]")).sendKeys(username);
+	//	driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys(password);
+		loginPage.enterUsername(username);
+		loginPage.enterPassword(password);
+		
+	    System.out.println("step - user enters username and password");
+
+	}
+
+	@When("user clicks on submit button")
+	public void user_clicks_on_submit_button() {
+	    System.out.println("step - user clicks on submit button");
+//	    driver.findElement(By.xpath("//*[@id=\"login-button\"]")).click();
+	    loginPage.clickLogin();
+
+	}
+
+	@Then("user is navigated to the home page")
+	public void user_is_navigated_to_the_home_page() {
+	    System.out.println("step - user is navigated to the home page");
+	    String actualURL = driver.getCurrentUrl();
+	    String expectedURL = "https://www.saucedemo.com/inventory.html";
+	    assertEquals(expectedURL, actualURL);
+
+	}
+	
+}
+
+
+
+Q&A
+
+
+What is  BDD and TDD?
+ Explain Cucumber shortly.
+ What language is used by Cucumber?
+What is meant by a feature file?
+What are the various keywords that are used in Cucumber for writing a scenario?
+What is the purpose of a Scenario Outline in Cucumber?
+ What programming language is used by Cucumber?
+ What is the purpose of the Step Definition file in Cucumber?
+What are the major advantages of the Cucumber framework?
+ What symbol is used for parameterization in Cucumber?
+ What is the file extension for a feature file?
+ Explain the purpose of keywords that are used for writing a scenario in Cucumber.
+
+Given
+When
+Then
+And
+ Provide an example of the TestRunner class in Cucumber.
+What is POM in cucumber?
+What is PageFactory in cucumber?
+
+Core Java 
+------------
+What is super class for all the exceptions in java ?
+
+New features in JDK1.8
+
+Lambdas
+Lambda Expressions were added in Java 8. A lambda expression is a short block of code which takes in parameters and returns a value. Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method.
+new Date Time API()
+default and static methods in interface
+
+=======================
+
+1)
+Difference between Array and ArrayList
+
+1)Array is a fixed length data structure whereas ArrayList is a variable length Collection class. 
+2)We cannot change length of array once created in Java but ArrayList can be changed. 
+3) We cannot store primitives in ArrayList, it can only store objects. But array can contain both primitives and objects in Java.
+
+2)
+Difference between Set and List
+1. The List is an ordered sequence.	1. The Set is an unordered sequence.
+2. List allows duplicate elements	2. Set doesn’t allow duplicate elements.
+2.Multiple null elements can be stored.	3.Null element can store only once.
+
+
+What is Object class in java ? List some methods of object class?
+super class for all the classes in java, toString,equals,hashCode,wait, notify
+
+
+
+Difference between Statement,PreparedStatement ?
+Statement is used for executing simple SQL Statements 
+PreparedStatement is used for executing dynamic and pre-compiled repetitive SQL Statements.	? represents placeholders
+
+
+What is the use of CallableStatement ?
+CallableStatement is used to call stored procedure
+
+
+
+
+https://github.com/tufailahm/core-java-jwa-recap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================Types of testing and definitions==============
+
+Testing is the process of executing a program to find errors. To make our software perform well it should be error-free. If testing is done successfully it will remove all the errors from the software. 
+
+Principles of Testing:-
+(i) All the tests should meet the customer requirements.
+(ii) To make our software testing should be performed by a third party.
+(iii) Exhaustive testing is not possible. As we need the optimal amount of testing based on the risk assessment of the application. 
+(iv) All the tests to be conducted should be planned before implementing it 
+(v) It follows the Pareto rule(80/20 rule) which states that 80% of errors come from 20% of program components. 
+(vi) Start testing with small parts and extend it to large parts. 
+
+Types of Testing:-
+1. Unit Testing
+It focuses on the smallest unit of software design. In this, we test an individual unit or group of interrelated units. It is often done by the programmer by using sample input and observing its corresponding outputs. 
+
+Example:
+
+a) In a program we are checking if the loop, method, or 
+   function is working fine
+b) Misunderstood or incorrect, arithmetic precedence.
+c) Incorrect initialization
+2. Integration Testing
+The objective is to take unit-tested components and build a program structure that has been dictated by design. Integration testing is testing in which a group of components is combined to produce output. 
+
+Integration testing is of four types: (i) Top-down (ii) Bottom-up (iii) Sandwich (iv) Big-Bang 
+Example:
+
+(a) Black Box testing:- It is used for validation. 
+In this, we ignore internal working mechanisms and 
+focus on what is the output?.
+
+(b) White box testing:- It is used for verification. 
+In this, we focus on internal mechanisms i.e.
+how the output is achieved?
+3. Regression Testing
+Every time a new module is added leads to changes in the program. This type of testing makes sure that the whole component works properly even after adding components to the complete program. 
+Example 
+
+In school, record suppose we have module staff, students 
+and finance combining these modules and checking if on 
+integration of these modules works fine in regression testing 
+4. Smoke Testing
+This test is done to make sure that the software under testing is ready or stable for further testing 
+It is called a smoke test as the testing of an initial pass is done to check if it did not catch the fire or smoke in the initial switch on. 
+Example: 
+
+If the project has 2 modules so before going to the module 
+make sure that module 1 works properly
+5. Alpha Testing
+This is a type of validation testing. It is a type of acceptance testing which is done before the product is released to customers. It is typically done by QA people. 
+Example: 
+
+When software testing is performed internally within
+the organization
+6. Beta Testing
+The beta test is conducted at one or more customer sites by the end-user of the software. This version is released for a limited number of users for testing in a real-time environment 
+Example: 
+
+When software testing is performed for the limited
+number of people
+7. System Testing
+This software is tested such that it works fine for the different operating systems. It is covered under the black box testing technique. In this, we just focus on the required input and output without focusing on internal working. 
+In this, we have security testing, recovery testing, stress testing, and performance testing 
+Example: 
+
+This includes functional as well as nonfunctional 
+testing
+8. Stress Testing
+In this, we give unfavorable conditions to the system and check how they perform in those conditions. 
+Example: 
+
+(a) Test cases that require maximum memory or other
+    resources are executed
+(b) Test cases that may cause thrashing in a virtual 
+    operating system
+(c) Test cases that may cause excessive disk requirement
+9. Performance Testing
+It is designed to test the run-time performance of software within the context of an integrated system. It is used to test the speed and effectiveness of the program. It is also called load testing. In it we check, what is the performance of the system in the given load.
+Example: 
+
+Checking several processor cycles.
+10. Object-Oriented Testing
+This testing is a combination of various testing techniques that help to verify and validate object-oriented software. This testing is done in the following manner: 
+
+Testing of Requirements,
+Design and Analysis of Testing,
+Testing of Code,
+Integration testing,
+System testing,
+User Testing.
+11. Acceptance Testing 
+Acceptance testing is done by the customers to check whether the delivered products perform the  desired tasks or not, as stated in requirements. 
+
+Software testing can be divided into two steps: 
+1. Verification: it refers to the set of tasks that ensure that the software correctly implements a specific function. 
+
+2. Validation: it refers to a different set of tasks that ensure that the software that has been built is traceable to customer requirements. 
+
+Verification: “Are we building the product right?” 
+Validation: “Are we building the right product?” 
+
+What are different types of software testing? 
+
+Software Testing can be broadly classified into two types: 
+
+1. Manual Testing: Manual testing includes testing software manually, i.e., without using any automation tool or any script. In this type, the tester takes over the role of an end-user and tests the software to identify any unexpected behavior or bug. There are different stages for manual testing such as unit testing, integration testing, system testing, and user acceptance testing. 
+
+Testers use test plans, test cases, or test scenarios to test software to ensure the completeness of testing. Manual testing also includes exploratory testing, as testers explore the software to identify errors in it. 
+
+2. Automation Testing: Automation testing, which is also known as Test Automation, is when the tester writes scripts and uses another software to test the product. This process involves the automation of a manual process. Automation Testing is used to re-run the test scenarios quickly and repeatedly, that were performed manually in manual testing.
+
+Apart from regression testing, automation testing is also used to test the application from a load, performance, and stress point of view. It increases the test coverage, improves accuracy, and saves time and money when compared to manual testing. 
+
+What are the different types of Software Testing Techniques ? 
+
+Software testing techniques can be majorly classified into two categories: 
+
+1. Black Box Testing: The technique of testing in which the tester doesn’t have access to the source code of the software and is conducted at the software interface without any concern with the internal logical structure of the software is known as black-box testing. 
+
+2. White-Box Testing: The technique of testing in which the tester is aware of the internal workings of the product, has access to its source code, and is conducted by making sure that all internal operations are performed according to the specifications is known as white box testing. 
+
+Black Box Testing	White Box Testing
+Internal workings of an application are not required.	Knowledge of the internal workings is a must.
+Also known as closed box/data-driven testing.	Also known as clear box/structural testing.
+End users, testers, and developers.	Normally done by testers and developers.
+This can only be done by a trial and error method.	Data domains and internal boundaries can be better tested.
+What are different levels of software testing? 
+
+Software level testing can be majorly classified into 4 levels: 
+
+1. Unit Testing: A level of the software testing process where individual units/components of a software/system are tested. The purpose is to validate that each unit of the software performs as designed. 
+
+2. Integration Testing: A level of the software testing process where individual units are combined and tested as a group. The purpose of this level of testing is to expose faults in the interaction between integrated units. 
+
+3. System Testing: A level of the software testing process where a complete, integrated system/software is tested. The purpose of this test is to evaluate the system’s compliance with the specified requirements. 
+
+4. Acceptance Testing: A level of the software testing process where a system is tested for acceptability. The purpose of this test is to evaluate the system’s compliance with the business requirements and assess whether it is acceptable for delivery. 
+
+software testing levels

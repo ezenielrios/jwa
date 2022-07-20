@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="5" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="6" time="56.885">
+<testcase classname="to test google search functionality" name="check if the google search feature functions correctly" time="14.211">
+<system-out><![CDATA[Given new browser is open...................................................passed
+And user is on home page....................................................passed
+When user enters a text search page.........................................passed
+And user clicks on the search button........................................passed
+Then user is navigated to the search results................................passed
+]]></system-out>
+</testcase>
+<testcase classname="user validation" name="check whether login is successful or not with valid credentials" time="6.055">
+<failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[Given user is an login page.................................................passed
+When user enters standard_user and secret_sauce.............................undefined
+And user clicks on submit button............................................skipped
+Then user is navigated to the home page.....................................skipped
+]]></failure>
+</testcase>
+<testcase classname="user validation" name="check whether login is successful or not with valid credentials 2" time="6.262">
+<failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[Given user is an login page.................................................passed
+When user enters locked_out_user and secret_sauce...........................undefined
+And user clicks on submit button............................................skipped
+Then user is navigated to the home page.....................................skipped
+]]></failure>
+</testcase>
+<testcase classname="user validation" name="check whether login is successful or not with valid credentials 3" time="6.712">
+<failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[Given user is an login page.................................................passed
+When user enters problem_user and secret_sauce..............................undefined
+And user clicks on submit button............................................skipped
+Then user is navigated to the home page.....................................skipped
+]]></failure>
+</testcase>
+<testcase classname="user validation" name="check whether login is successful or not with valid credentials 4" time="9.007">
+<failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[Given user is an login page.................................................passed
+When user enters daniel and richard.........................................undefined
+And user clicks on submit button............................................skipped
+Then user is navigated to the home page.....................................skipped
+]]></failure>
+</testcase>
+<testcase classname="user validation" name="check whether login is successful or not with valid credentials 5" time="14.186">
+<failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[Given user is an login page.................................................passed
+When user enters tufail and ahmed...........................................undefined
+And user clicks on submit button............................................skipped
+Then user is navigated to the home page.....................................skipped
+]]></failure>
+</testcase>
+</testsuite>
