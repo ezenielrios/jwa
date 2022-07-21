@@ -1048,34 +1048,12 @@ CallableStatement is used to call stored procedure
 https://github.com/tufailahm/core-java-jwa-recap
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ========================Types of testing and definitions==============
+What is Testing ?
+Testing is the process of executing a program to find logical errors. 
+To make our software perform well it should be error-free. 
+If testing is done successfully it will remove all the errors from the software. 
 
-Testing is the process of executing a program to find errors. To make our software perform well it should be error-free. If testing is done successfully it will remove all the errors from the software. 
 
 Principles of Testing:-
 (i) All the tests should meet the customer requirements.
@@ -1086,8 +1064,11 @@ Principles of Testing:-
 (vi) Start testing with small parts and extend it to large parts. 
 
 Types of Testing:-
+
 1. Unit Testing
-It focuses on the smallest unit of software design. In this, we test an individual unit or group of interrelated units. It is often done by the programmer by using sample input and observing its corresponding outputs. 
+It focuses on the smallest unit of software design.
+ In this, we test an individual unit or group of interrelated units.
+ It is often done by the programmer by using sample input and observing its corresponding outputs. 
 
 Example:
 
@@ -1095,66 +1076,120 @@ a) In a program we are checking if the loop, method, or
    function is working fine
 b) Misunderstood or incorrect, arithmetic precedence.
 c) Incorrect initialization
+
+
+====================
+
+
+
 2. Integration Testing
-The objective is to take unit-tested components and build a program structure that has been dictated by design. Integration testing is testing in which a group of components is combined to produce output. 
+The objective is to take unit-tested components and build a program structure that has been dictated by design.
+ Integration testing is testing in which a group of components is combined to produce output. 
 
 Integration testing is of four types: (i) Top-down (ii) Bottom-up (iii) Sandwich (iv) Big-Bang 
+
 Example:
 
-(a) Black Box testing:- It is used for validation. 
-In this, we ignore internal working mechanisms and 
+(a) Black Box testing:- It is used for validation.  In this, we ignore internal working mechanisms and 
 focus on what is the output?.
 
-(b) White box testing:- It is used for verification. 
-In this, we focus on internal mechanisms i.e.
+(b) White box testing:- It is used for verification.  In this, we focus on internal mechanisms i.e.
 how the output is achieved?
+
+
+
+Big-Bang - Everything will be combined at once and get tested. 
+Top -down - top modules are integrated first
+Bottom - up - bottopm modules are integrated first
+Sandwich : Both top-down and Bottom-up will be used
+
 3. Regression Testing
-Every time a new module is added leads to changes in the program. This type of testing makes sure that the whole component works properly even after adding components to the complete program. 
+Every time a new module is added leads to changes in the program. 
+** This type of testing makes sure that the whole component works properly even after adding components to the complete program. 
+
 Example 
 
-In school, record suppose we have module staff, students 
-and finance combining these modules and checking if on 
-integration of these modules works fine in regression testing 
+Plane example 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 4. Smoke Testing
 This test is done to make sure that the software under testing is ready or stable for further testing 
 It is called a smoke test as the testing of an initial pass is done to check if it did not catch the fire or smoke in the initial switch on. 
 Example: 
 
-If the project has 2 modules so before going to the module 
-make sure that module 1 works properly
+If the project has 2 modules so before going to the module  make sure that module 1 works properly
+
 5. Alpha Testing
 This is a type of validation testing. It is a type of acceptance testing which is done before the product is released to customers. It is typically done by QA people. 
 Example: 
 
-When software testing is performed internally within
-the organization
+When software testing is performed internally within the organization
+
 6. Beta Testing
 The beta test is conducted at one or more customer sites by the end-user of the software. This version is released for a limited number of users for testing in a real-time environment 
-Example: 
 
-When software testing is performed for the limited
-number of people
+Example: 
+When software testing is performed for the limited number of people
+
+
 7. System Testing
 This software is tested such that it works fine for the different operating systems. It is covered under the black box testing technique. In this, we just focus on the required input and output without focusing on internal working. 
 In this, we have security testing, recovery testing, stress testing, and performance testing 
 Example: 
 
-This includes functional as well as nonfunctional 
-testing
+This includes functional as well as nonfunctional  testing
+
+non functional - includes behavior testing and also which is not tested at functional testing level.
+
+
+
 8. Stress Testing
 In this, we give unfavorable conditions to the system and check how they perform in those conditions. 
 Example: 
 
-(a) Test cases that require maximum memory or other
-    resources are executed
-(b) Test cases that may cause thrashing in a virtual 
-    operating system
+(a) Test cases that require maximum memory or other resources are executed
+(b) Test cases that may cause thrashing in a virtual  operating system
 (c) Test cases that may cause excessive disk requirement
+
 9. Performance Testing
-It is designed to test the run-time performance of software within the context of an integrated system. It is used to test the speed and effectiveness of the program. It is also called load testing. In it we check, what is the performance of the system in the given load.
+It is designed to test the run-time performance of software within the context of an integrated system. 
+It is used to test the speed and effectiveness of the program. 
+It is also called load testing. In it we check, what is the performance of the system in the given load.
 Example: 
 
 Checking several processor cycles.
+
 10. Object-Oriented Testing
 This testing is a combination of various testing techniques that help to verify and validate object-oriented software. This testing is done in the following manner: 
 
@@ -1164,6 +1199,8 @@ Testing of Code,
 Integration testing,
 System testing,
 User Testing.
+
+
 11. Acceptance Testing 
 Acceptance testing is done by the customers to check whether the delivered products perform the  desired tasks or not, as stated in requirements. 
 
@@ -1175,17 +1212,110 @@ Software testing can be divided into two steps:
 Verification: “Are we building the product right?” 
 Validation: “Are we building the right product?” 
 
+
+
+
 What are different types of software testing? 
 
 Software Testing can be broadly classified into two types: 
 
-1. Manual Testing: Manual testing includes testing software manually, i.e., without using any automation tool or any script. In this type, the tester takes over the role of an end-user and tests the software to identify any unexpected behavior or bug. There are different stages for manual testing such as unit testing, integration testing, system testing, and user acceptance testing. 
+1. Manual Testing: Manual testing includes testing software manually, i.e., without using any automation tool or any script.
+ In this type, the tester takes over the role of an end-user and tests the software to identify any unexpected behavior or bug. 
+There are different stages for manual testing such as unit testing, integration testing, system testing, and user acceptance testing. 
 
-Testers use test plans, test cases, or test scenarios to test software to ensure the completeness of testing. Manual testing also includes exploratory testing, as testers explore the software to identify errors in it. 
+Testers use 
+	test plans, 
+	test cases, or 
+	test scenarios to test software to ensure the completeness of testing. 
+	Manual testing also includes exploratory testing, as testers explore the software to identify errors in it. 
 
-2. Automation Testing: Automation testing, which is also known as Test Automation, is when the tester writes scripts and uses another software to test the product. This process involves the automation of a manual process. Automation Testing is used to re-run the test scenarios quickly and repeatedly, that were performed manually in manual testing.
 
-Apart from regression testing, automation testing is also used to test the application from a load, performance, and stress point of view. It increases the test coverage, improves accuracy, and saves time and money when compared to manual testing. 
+** Manual testing is testing of the software where tests are executed manually by a QA Analyst.
+
+
+
+2. Automation Testing: Automation testing, which is also known as Test Automation, is when the tester writes scripts and uses another software to test the product. 
+	This process involves the automation of a manual process.
+	 Automation Testing is used to re-run the test scenarios quickly and repeatedly, that were performed manually in manual testing.
+
+	Apart from regression testing, automation testing is also used to test the application from a load, performance, and stress point of view. 
+	It increases the test coverage, improves accuracy, and saves time and money when compared to manual testing. 
+
+In Automated Software Testing, testers write code/test scripts to automate test execution.
+
+
+
+=====================================Test Document
+
+Test Policy
+High Level document which details the principles, methods and important testing goals for an organization.
+Outlines the testing objectives for an organization.
+Describes how an organization will measure the effectiveness and efficiency of the testing process and strategies for improvement.
+
+
+Test Plan
+test plan is  detailed document which describes how a team should handle testing, in general.
+and, It also Includes details for the test strategy, objectives, schedule, estimations and deliverables.
+
+User Story
+User stories are high-level, business artifacts which define software requirements or application features.
+
+Test Scenario
+A description of any functionality which can be tested and how it is expected to behave.
+The test Scenario comprises multiple test cases which are used to verify functionality.
+
+Test Summary
+
+Test Strategy 
+------
+
+======================================================================
+What is Testing lifecycle  ?
+
+Software Testing Life Cycle (STLC)
+
+
+1)Analysis
+	2)Test Planning
+		3)Test Development
+			4)Environment Setup
+				5)Test Execution
+					6)Test Closure
+		
+
+
+
+=======================================================================
+what is a test plan?
+test plan is  detailed document which describes how a team should handle testing, in general.
+and, It also Includes details for the test strategy, objectives, schedule, estimations and deliverables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 What are the different types of Software Testing Techniques ? 
 
@@ -1213,3 +1343,14 @@ Software level testing can be majorly classified into 4 levels:
 4. Acceptance Testing: A level of the software testing process where a system is tested for acceptability. The purpose of this test is to evaluate the system’s compliance with the business requirements and assess whether it is acceptable for delivery. 
 
 software testing levels
+
+
+
+
+
+------------
+Test Plan
+Test Cases
+Test Scenarios
+Use cases
+scripts
