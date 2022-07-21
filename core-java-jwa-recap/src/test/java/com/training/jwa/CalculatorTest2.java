@@ -53,4 +53,57 @@ class CalculatorTest2 {
 		assertEquals(expected, actual);	
 	}
 
+	
+	@Test
+	@DisplayName("4. Checking palidrome for alex ")
+	@Order(4)
+	void testCheckPalindrome() {
+		boolean expected = true;
+		boolean actual = calc.checkPalindrome("alex");
+		assertNotEquals(expected, actual);	
+	}
+
+	
+	@Test
+	@DisplayName("5. Checking palidrome for izzi ")
+	@Order(5)
+	void testCheckPalindrome2() {
+		boolean expected = true;
+		boolean actual = calc.checkPalindrome("izzi");
+		assertEquals(expected, actual);	
+	}
+	
+	@Test
+	@DisplayName("6. Checking palidrome for 1881 ")
+	@Order(6)
+	void testCheckPalindrome3() {
+		boolean expected = true;
+		boolean actual = calc.checkPalindrome("1881");
+		assertEquals(expected, actual);	
+	}
+	
+	@Test
+	@DisplayName("7. Checking sum for multiple numbers ")
+	@Order(7)
+	void testAddNumbers9() {
+		int expected = 100;
+		int actual = calc.addNumbers(10,10,20,30,30);
+		assertEquals(expected, actual);	
+		actual = calc.addNumbers(50,50);
+		assertEquals(expected, actual);	
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
