@@ -1113,36 +1113,6 @@ Plane example
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 4. Smoke Testing
 This test is done to make sure that the software under testing is ready or stable for further testing 
 It is called a smoke test as the testing of an initial pass is done to check if it did not catch the fire or smoke in the initial switch on. 
@@ -1171,6 +1141,11 @@ Example:
 This includes functional as well as nonfunctional  testing
 
 non functional - includes behavior testing and also which is not tested at functional testing level.
+NON-FUNCTIONAL TESTING(NFT) is defined as a type of Software testing to check non-functional aspects (performance, usability, reliability, etc) of a software application. It is designed to test the readiness of a system as per nonfunctional parameters which are never addressed by functional testing.
+
+An excellent example of non-functional test would be to check how many people can simultaneously login into a software.
+Another example : logging, transaction, security
+
 
 
 
@@ -1201,7 +1176,7 @@ System testing,
 User Testing.
 
 
-11. Acceptance Testing 
+11. User Acceptance Testing  (UAT)
 Acceptance testing is done by the customers to check whether the delivered products perform the  desired tasks or not, as stated in requirements. 
 
 Software testing can be divided into two steps: 
@@ -1267,7 +1242,6 @@ The test Scenario comprises multiple test cases which are used to verify functio
 Test Summary
 
 Test Strategy 
-------
 
 ======================================================================
 What is Testing lifecycle  ?
@@ -1286,16 +1260,27 @@ Software Testing Life Cycle (STLC)
 
 
 =======================================================================
-what is a test plan?
+** what is a test plan?
 test plan is  detailed document which describes how a team should handle testing, in general.
 and, It also Includes details for the test strategy, objectives, schedule, estimations and deliverables.
 
 
 
+=======================================================================
+What is Requirement Traceability Matrix?
+Requirement Traceability Matrix (RTM) is a document that maps and traces user requirement with test cases
 
+login should be successful with valid credentials
 
+testUserValidate()
+{
+	login(username,password);
+}
 
-
+Which Parameters to include in Requirement Traceability Matrix?
+Requirement ID
+Requirement Type and Description
+Test Cases with Status
 
 
 
@@ -1354,3 +1339,172 @@ Test Cases
 Test Scenarios
 Use cases
 scripts
+
+
+-----------------------
+Defects lifecycle
+Features vs defects
+Bugs	- errors
+
+Defects are
+
+
+bugs 
+defects
+errors
+
+
+mistakes in coding is called error
+** error found by tester is called defect
+defect accpeted by development team then it is called a bug
+
+
+Defect lifecycle
+-----------------
+
+
+
+What is Test Design? When to create Test Design?
+
+Test design is a process that describes “how” testing should be done. It includes processes for the identifying test cases by enumerating steps of the defined test conditions. The testing techniques defined in test strategy or plan is used for enumerating the steps.
+
+The test cases may be linked to the test conditions and project objectives directly or indirectly depending upon the methods used for test monitoring, control and traceability.
+
+The objectives consist of test objectives, strategic objectives and stakeholder definition of success.
+
+When to create test design?
+After the test conditions are defined and sufficient information is available to create the test cases of high or low level, test design for a specified level can be created.
+
+For lower level testing, test analysis and design are combined activity. For higher level testing, test analysis is performed first, followed by test design.
+
+There are some activities that routinely take place when the test is implemented. These activities may also be incorporated into the design process when the tests are created in an iterative manner.
+
+An example of such a case is creation of test data.
+
+Test data will definitely be created during the test implementation. So it is better to incorporate it in the test design itself.
+
+This approach enables optimization of test condition scope by creating low or high level test cases automatically.
+
+
+
+Core Java 
+
+  Exception Handling - Errors, Checked Exception, Unchecked Exception, Throws Vs Throw
+=============================================================================
+
+
+In java , 
+errors
+	syntax		Void
+	logical		1-5	1,2,3,4
+	runtime		errors at the time of execution are known as an exception
+
+like ArithmeticException,ArrayIndexOutOfBoundsException,NullPointerException
+
+** Throwable -super class for all the exceptions in java 
+
+
+Throwable
+
+
+
+
+Exception			Error(not in our control)
+-
+-RuntimeException
+	- ArithmeticException,ArrayIndexOutOfBoundsException,NullPointerException
+	-
+	-
+-
+
+
+
+Handle 
+
+	try
+	catch
+	finally keyword
+
+
+
+**Checked Exception, Unchecked Exception
+===============================
+
+Checked
+The Exception class and all of its subclasses, except for RuntimeException, are known as "checked exceptions"
+ Checked exceptions are required to be handled or declared by the programmer - otherwise, the code will not compile.
+Interrupted,FileNotFoundException
+compile time exception
+
+
+
+Unchecked
+RuntimeException is a special type of exception - it, and all of its subclasses - are known as "unchecked exceptions". An unchecked exception is an exception that is not required to be handled or declared like checked exceptions are. Some examples include:
+
+ArithmeticException for illegal math operations
+IndexOutOfBoundsException for if you reference an index that is greater than the length of an array
+NullPointerException for if you attempt to perform an operation on a reference variable that points to a null value
+
+
+
+throw and throws
+
+throw is a keyword which we can use inside the method to raise an exception using new keyword
+The throw keyword in Java is used to explicitly throw an exception from a method or any block of code. 
+We can throw either checked or unchecked exception. 
+The throw keyword is mainly used to throw custom exceptions. 
+
+
+
+throws is a keyword that we use alongside method name to delegate the checked exceptions
+throws is a keyword in Java which is used in the signature of method to indicate that this method might throw one of the listed type exceptions.
+
+
+
+
+
+Testing (Summary)
+
+Unit Testing	A programmatic test that tests the internal working of a unit of code, such as a method or a function.
+Integration Testing	Ensures that multiple components of systems work as expected when they are combined to produce a result.
+Regression Testing	Ensures that existing features/functionality that used to work are not broken due to new code changes.
+System Testing	Complete end-to-end testing is done on the complete software to make sure the whole system works as expected.
+Smoke Testing	A quick test performed to ensure that the software works at the most basic level and doesn’t crash when it’s started. Its name originates from the hardware testing where you just plug the device and see if smoke comes out.
+Performance Testing	Ensures that the software performs according to the user’s expectations by checking the response time and throughput under specific load and environment. 
+User-Acceptance Testing	Ensures the software meets the requirements of the clients or users. This is typically the last step before the software is live, i.e. it goes to production.
+Stress Testing	Ensures that the performance of the software doesn’t degrade when the load increases. In stress testing, the tester subjects the software under heavy loads, such as a high number of requests or stringent memory conditions to verify if it works well.
+Usability Testing	Measures how usable the software is. This is typically performed with a sample set of end-users, who use the software and provide feedback on how easy or complicated it is to use the software. 
+Security Testing	Now more important than ever. Security testing tries to break a software’s security checks, to gain access to confidential data. Security testing is crucial for web-based applications or any applications that involve money. 
+
+
+What is regression testing in software testing?
+What is end-to-end testing?
+What is unit testing?
+ What is a test environment?
+A test environment consists of a server/computer on which a tester runs their tests. It is different from a development machine and tries to represent the actual hardware on which the software will run; once it’s in production.
+
+Whenever a new build of the software is released, the tester updates the test environment with the latest build and runs the regression tests suite. Once it passes, the tester moves on to testing new functionality.
+
+Explain black-box testing, white-box testing, and grey-box testing.
+
+ Explain test scenarios, test scripts, and test cases in software testing.
+What is a bug in software testing?
+
+State the difference between bugs and errors
+What is a Test Plan? What does it include?
+
+. What is a Test Report? What does it include?
+ What do you mean by Test Deliverables?
+ What is a user story?
+. What is defects in software testing?
+ What is the software testing life cycle?
+What is functional testing?
+What is non-functional testing?
+
+Core Java :
+What is exception in java ?
+What is the super class for all the exception in java ?
+Difference between checked and unchecked exception in java ?
+Difference between throw and throws ?
+How you create custom exception in java ?
+
