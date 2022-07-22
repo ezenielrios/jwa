@@ -1507,4 +1507,289 @@ What is the super class for all the exception in java ?
 Difference between checked and unchecked exception in java ?
 Difference between throw and throws ?
 How you create custom exception in java ?
+	By extending exception(checked) or runtimeexception(unchecked)
+	By declaring constructors
+
+
+Interfaces and abstract classes
+
+What is the difference between an abstract class and an interface?
+
+An abstract class which contains abstract method(which will not have any body) and/or non abstract method as well
+It can have constructors
+It can have variables
+You cannot create an object of abstract class
+
+public abstract class Animal {
+	public void sleep(){
+	}
+	public abstract void eat();
+}
+public class Dog extends Animal {
+	
+}
+
+
+Animal a = new Animal();	//not possible to create an object of abstract class
+
+
+
+Interface
+----------------------------
+all the methods are by default abstract in an interface 
+cannot create constructor
+it can contain only constants means final and static 
+we use implements keyword to inherit
+By interface , we can achieve multiple inheritance
+
+You cannot create an object of interfaces
+
+---------------------------------
+
+
+What is the difference between overloading and overriding ?
+
+Overloading : method having same name but different parameters
+ When two or more methods in the same class have the same name but different parameters, it's called Overloading
+
+Overriding :  method having same name and same parameters but these methods are rewritten in child class
+When the method signature (name and parameters) are the same in the superclass and the child class, it's called Overriding.
+
+Can we override static methods ?
+No, we cannot override static methods
+
+
+How can you restrict the creation of an object of class ?
+
+We can do this by making the constrtuctor as private
+
+
+How will you create string in java ?
+1) by using new keyword
+String data = new String("revature");
+2) by initializing directly
+String data1="revature"
+
+String in java is immutable. it means that it cannot be changed
+
+
+List out some string methods ?
+tolowercase,touppercase,length,trim,equals,valueOf, slice,replace,split,concat,equalsIgnoreCase
+
+
+What is the super class for all the classes in java ?
+Object
+
+List out some object class methods ?
+equals,toString,finalize,hashCode,getClass,wait,notify
+
+
+Animal extends Object
+	sleep
+	eat
+Dog extends Animal
+	sleep
+
+	d.
+
+What is String ?
+String is a class in java.lang package. It is used to store group of characters
+
+
+What is StringBuffer and StringBuilder? Difference between these two ?
+Both are mutable and hence can be changed
+StringBuffer is sync and slow and StringBuilder is not sync and fast.
+StringBuffer is there since jdk1 but Stringbuilder introduced in jdk1.5
+
+
+
+What are primitive data types?
+There are 8 primitive data types
+numbers : byte , short, int , long
+decimal : float and double
+boolean		- default value of boolean is false
+char
+
+what is difference between float and double?
+range and capacity
+float - 4 byte
+double - 8 byte
+by default decimal values in java are double
+
+float marks=90.9;	//illegal
+	4      8
+float marks = 90.9f;//legal
+	
+What is static?
+static belongs to class and not objects
+The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class. The users can apply static keywords with variables, methods, blocks, and nested classes.
+
+
+What is String and String Buffer?
+
+
+
+
+What is the difference between static and final variable?
+
+final means constants, it cannot be changed once assigned
+ The static keyword in Java is used to share the same variable or method of a given class. The users can apply static keywords with variables, methods, blocks, and nested classes.
+
+final class cannot be inherited
+final methods cannot be overridden
+you can't make an abstract class and/or method final in Java because the abstract and final are both exclusive measurements
+
+
+scopes
+If your given instance variable, static variable ,and local variable where would you place them?
+outside the method and inside the class  - instance variable, static variable
+inside the method -= local variable
+
+What scopes would the above variables belong to?
+
+
+How and where could you access those variables?
+
+How do you create Strings?
+1) by using new keyword
+String data = new String("revature");
+2) by initializing directly
+String data1="revature"
+
+What is the difference between the two methods of creating Strings?
+
+package com.training.jwa;
+
+public class StringDemo {
+
+	public static void main(String[] args) {
+
+		// what is the difference between equals method and == operator
+		// == checks the reference of two objects
+		// equals method checks the value of two objects
+		// What is the difference between the two methods of creating Strings?
+		/*
+		 * 1) by using new keyword 
+		 * String data = new String("revature"); 
+		 * 2) by initializing directly 
+		 * String data1="revature"
+		 * 
+		 */
+		String str1 = "revature";
+		String str2 = new String("revature");
+
+		System.out.println(str1 == str2); // ??
+		System.out.println(str1.equals(str2)); // ??
+	}
+
+}
+
+
+
+
+Asked me to expain each individual part of public void static main method
+public 	
+access specifier
+	
+static 		
+non-access modifier	
+
+return type		
+void 
+
+main
+is not a keyword in java, but it is a special method that JVM looks in our class to start the execution
+
+String args[]
+command line argument - it can take parameters during the start time
+
+
+			
+What main method is static in java ?
+
+Because JVM need not create an object to call the main method
+Java main() method is always static, so that JVM can call it without the creation of an object or before the creation of an object of the class. 
+In any Java program, the main() method is the starting point from where compiler starts program execution
+
+What is the use of finally block in exception handling ?
+
+try
+{
+}
+catch
+{
+}
+finally
+{
+	//this block will get called
+	//closing the file and db connection done here
+	//gets executed irrespective of exception is there or not
+}
+
+The finally block in java is used to put important codes such as clean up code e.g. closing the file or closing the connection. 
+The finally block executes whether exception rise or not and whether exception handled or not.
+ A finally contains all the crucial statements regardless of the exception occurs or not.
+
+
+
+==============================================================================================
+
+Collections
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL Recap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
