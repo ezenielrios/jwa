@@ -2,7 +2,7 @@ package com.training.jwa.exceptiondemo;
 
 public class Demo1 {
 
-	String name="alex";
+	String name;
 	public void display() {
 		System.out.println("Hi");
 		try {
@@ -14,6 +14,10 @@ public class Demo1 {
 		}
 		catch (Exception e) {
 			System.out.println("Name cannot be null");
+		}
+		finally {
+			System.out.println("REVATURE");
+			
 		}
 		System.out.println("Bye");
 	}
