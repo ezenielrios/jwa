@@ -1511,6 +1511,9 @@ How you create custom exception in java ?
 	By declaring constructors
 
 
+---------Day 5
+
+
 Interfaces and abstract classes
 
 What is the difference between an abstract class and an interface?
@@ -1737,6 +1740,134 @@ The finally block executes whether exception rise or not and whether exception h
 Collections
 
 
+Data structure
+
+Use case :I want to store and sort all my asociates name
+
+
+array	- 10 size
+
+
+sort - apply some algorithm (bubble,merge,quick,selection,insertion,heap sort)	-12 lines
+
+
+testing 	- 15 lines
+
+
+--------print the sorted names
+
+
+
+1) addition and deletion is big problem here
+2) lot of lines of code 
+
+add any item
+delete any item
+
+
+Collection framework
+================
+	built in framework
+	set of classes and interfaces to work with data structure
+	
+	benefits :
+		less code
+		tested code
+		faster
+		variety of classes to choose from
+		easy learning curve
+
+The Java collections framework is a set of classes and interfaces that implement commonly reusable collection data structures
+
+
+Interface								Collection
+
+Interface		
+Set											
+
+(Set will not accept duplicate value)					
+
+Classes		
+HashSet	- no order is guranenteed									
+LinkedHashSet - as it is									
+TreeSet	- sorted									
+
+
+List
+(can accept duplicate value)	
+
+ArrayList		- iteration will be faster than linkedlist
+LinkedList	- frequent addition and deletion
+Vector		- same like arraylist ,it is not synchronized(faster than arraylist)
+
+
+Do you know about Collections?
+What is the difference between List and Set?
+Difference between List and Set:
+
+List	Set
+1. The List is an indexed sequence.	1. The Set is an non-indexed sequence.
+2. List allows duplicate elements	2. Set doesn’t allow duplicate elements.
+3. Elements by their position can be accessed.	3. Position access to elements is not allowed.
+4. Multiple null elements can be stored.	4. Null element can store only once.
+5. List implementations are ArrayList, LinkedList, Vector, Stack	5. Set implementations are HashSet, LinkedHashSet, Treeset
+
+
+What is the difference between Array and ArrayList?
+
+Base	Array	ArrayList
+Dimensionality 	It can be single-dimensional or multidimensional 	It can only be single-dimensional 
+Traversing Elements 	For and for each generally is used for iterating over arrays 	Here iterator is used to traverse riverArrayList 
+Length 	length keyword can give the total size of the array.	size() method is used to compute the size of ArrayList.
+Size	It is static and of fixed length	It is dynamic and can be increased or decreased in size when required.
+Speed	It is faster as above we see it of fixed size	It is relatively slower because of its dynamic nature 
+Primitive Datatype Storage	Primitive data types can be stored directly unlikely objects	Primitive data types are not directly added unlikely arrays, they are added indirectly with help of autoboxing and unboxing
+Generics	They can not be added here hence type unsafe 	They can be added here hence makingArrayList type-safe. 
+Adding Elements 	Assignment operator only serves the purpose	Here a special method is used known as add() method  
+
+Stack	- LIFO
+
+Queue	- FIFO
+
+
+---
+
+Map
+----------
+It uses key value pairs
+
+Map data = new HashMap();
+
+data.add XXX error
+data.put("E00827",89000);
+data.put("E00827",19000);
+data.put("E00829",69000);
+
+HashMap		- no order is guranenteed	
+TreeMap		- sorted based on keys
+LinkedHashMap	- order will be as it is
+
+Have you used Hash map if so how do you use it?
+it takes key value pairs and no order is guranenteed	
+HashMap		- no order is guranenteed	
+
+
+
+Collections : Class 
+It has lots of useful static methods like sort, reverse and many more
+Collections class in java is a useful utility class to work with collections in java. 
+The java. util. Collections class directly extends the Object class and exclusively consists of the static methods that operate on Collections or return them.
+
+Collections.sort(names);
+
+Collections.reverse(names);
+
+
+Generics
+==============
+What is generics ?
+The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects. 
+It makes the code stable by detecting the bugs at compile time.
 
 
 
@@ -1744,27 +1875,57 @@ Collections
 
 
 
+What is Java? / Why Java?
+What is JRE / JDK / JVM?
+What is the root class from which every class extends?
+What are the implicit modifiers for interface variables?
+What are the primitive data types in Java?
+What is the difference between method overloading and overriding?
+Difference between extends and implements?
+What are generics? What is the diamond operator (`<>`)?
+What are enumerations (enums)?
+Why are strings immutable in java?
+What is the difference between `String`, `StringBuilder`, and `StringBuffer`?
+What are annotations?
+Explain stack vs heap?
+What is a POJO? What is a bean?
+How can you force garbage collection in Java?
+What is the difference between `final`, `.finalize()`, and `finally`?
+What is a Marker interface?
+What are the access modifiers in Java? Explain them.
+What are the non-access modifiers in Java?
+What is the difference between static and final variables?
+What are the default values for all data types in Java?
+What are the implicit modifiers for interface variables / methods?
+What is a wrapper class?
+What is autoboxing / unboxing?
+Is Java pass-by-value or pass-by-reference?
+What is synchronized keyword?
+What is the difference between `==` and `.equals()`?
+First line of constructor?
 
 
+What is the difference between an abstract class and an interface?
+What is the difference between overloading and overriding ?
+How can you restrict the creation of an object of class ?
+List out some string methods ?
+What is the super class for all the classes in java ?
+List out some object class methods ?
+What is String ?
+What is StringBuffer and StringBuilder? Difference between these two ?
+What are primitive data types?
+what is difference between float and double?
+What is String and String Buffer?
+How do you create Strings?
+What is the difference between the two methods of creating Strings?
+What is collection framework ?
+What is the difference between Array and ArrayList?
+
+What is a Collection framework?
+What is the difference between List and Set?
+What are the advantages of the Collection framework?
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SQL Recap
 
 
 
