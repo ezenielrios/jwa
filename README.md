@@ -2341,7 +2341,7 @@ reduce the number of tables to increase the speed of retrival of data.
 
 ------------------------------------------------------------------------------------------------------------
 
-What are the sub languages of SQL ?
+***************  What are the sub languages of SQL ?
 
 
 DDL – Data Definition Language.
@@ -2367,6 +2367,89 @@ select
 
 Postgres
 DBeaver
+
+select * from employees;
+
+select employee_id ,first_name ,salary  from employees;
+
+--where clause is used for conditions
+
+select employee_id ,first_name ,salary,manager_id  from employees where salary > 15000
+
+--and operator or
+
+select employee_id ,first_name ,salary  
+from employees
+where salary > 15000
+and manager_id =100
+
+
+select employee_id ,first_name ,salary ,manager_id
+from employees
+where salary > 15000
+or manager_id =100
+
+
+select * from departments d ;
+
+select department_name ,manager_id  from departments d ;
+
+select department_name ,manager_id  from departments d where department_name = 'Payroll';
+
+---
+---get me all the details about country - US
+-- Use contries table
+select * from countries where country_name = 'US';
+
+
+----WAQ to get employees names,salary,hire_date,job_id who got hired after 31-Dec-2005
+Select * from employees where hire_date >= '31-DEC-05'
+Select * from employees where hire_date > '31-12-05'
+select first_name, last_name, hire_date, job_id
+from employees e
+where hire_date > '31-12-05'
+
+----WAQ to get employees names,salary,hire_date,job_id who is reporting to manager 103
+select first_name,last_name,salary,hire_date,job_id from employees where manager_id =103;
+
+
+----WAQ to get employees names,salary,hire_date,job_id who works in department 60 ,90 or 100
+select "FIRST_NAME" , "LAST_NAME" ,"SALARY" ,"HIRE_DATE" ,"JOB_ID"  from employees e where "DEPARTMENT_ID" in ('60', '90','100');
+Select * from employees where department_id='60' or department_id='90' or department_id='100';
+
+
+---------is , is not null, is null, like , in, not in, between
+
+select * from employees e where commission_pct is null;
+
+select * from employees e where manager_id  is null;
+
+select * from employees e where commission_pct is not null;
+
+select * from employees e where first_name like 'A%';
+
+select * from employees e where first_name like '%a';
+
+
+select * from employees e where first_name like '__a%';
+
+select * from employees e where salary between 5000 and 8000;
+
+----WAQ to print all email(use email column) that starts with D
+select email from employees where email like 'D%'
+
+----WAQ to print all employees details who does'nt assigned a department
+select * from employees where department_id is null;
+
+----WAQ to print all the employees whose employeeid is between 150 and 200
+select *  from employees e where EMPLOYEE_ID between 150 and 200;
+
+
+---in 
+
+select *  from employees e where job_id in ('IT_PROG', 'PU_CLERK','PU_MAN')
+
+
 
 
 
