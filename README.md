@@ -1929,6 +1929,450 @@ What are the advantages of the Collection framework?
 
 
 
+Day6
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+File I/O in java is way by which read and write from the files.
+
+
+ FilHandling Classes - FileInputStream,OutputStream,Reader,Writer etc.. Cover        Characterstream/StringBuffer/bitstream etc.
+
+
+Other Core Java Topics /Questions
+
+FAQ
+
+
+SQL -
+DDL
+DML
+DQL
+
+
+
+java.io package
+
+File class in java.io package is used for doing file operations like create,delete, create folders,list folders and many more things
+
+
+package com.training.jwa.iodemos;
+
+import java.io.File;
+import java.io.IOException;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws IOException {
+		File myfile = new File("hello.txt");		
+		File myFolder1 = new File("revature");
+		
+		System.out.println("File exists : "+ myfile.exists());
+		
+		if(myfile.exists()) {
+			System.out.println("File exists and deleted");
+			myfile.delete();
+			myFolder1.delete();
+		}
+		else {
+			myfile.createNewFile();
+			myFolder1.mkdir();
+			System.out.println("Created new file and folder: "+myfile.getName());
+		}
+		
+	}
+}
+
+
+(Byte Streams)
+Byte streams in Java help to perform input and output operations of 8-bit bytes. 
+In other words, it processes data byte by byte. 
+The most frequently used classes for Byte stream operations are FileInputStream and FileOutputStream.
+Streams		-
+		InputStream	- read
+
+		FileInputStream
+		DataInputStream
+		ObjectInputStream
+
+
+		OutputStream	- write
+
+		FileOutputStream
+		DataOutputStream
+		ObjectOutputStream
+
+
+(Character stream)
+Character stream in Java helps to perform input and output for 16 bit Unicode. 
+The most common classes for character streaming in Java are FileReader and FileWriter
+Reader/Writer
+
+		Reader		- read
+			FileReader
+			
+
+
+
+		Writer		- writing
+
+			FileWriter
+
+
+Hands-on (Create a copy paste program)	- Additional task
+
+1)
+
+Enter the file name to read : hello.txt
+
+hello.txt does not exists
+
+Thanks for using my program
+
+2)
+Enter the file name to read : hello.txt
+
+hello.txt does exists
+
+Enter the file name to write : luis.txt
+
+Successfully copied hello.txt to luis.txt
+
+Thanks for using my program
+
+
+
+====================================================
+package com.training.jwa.iodemos;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws IOException  {
+		File readFile = new File("quote.txt");
+		
+		if(readFile.exists()) {
+			//write the code to read from file and print
+			//What is FileInputStream in java ?
+			//Ans : FIS is a byte stream which is used to read the contents of a file
+			FileInputStream inputStream = new FileInputStream(readFile);
+			int res=0;
+			
+			while((res = inputStream.read()) != -1)	//-1 indicates EOF 	//reading the file
+				System.out.print((char)res);
+			
+			inputStream.close();//closing the file
+		}
+		else
+		{
+			System.out.println("File :"+readFile.getName()+ " does not exists");
+		}
+	}
+}
+
+
+==================================
+
+package com.training.jwa.iodemos;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+/**
+ * 
+ * @author tufai
+ * Writing to a file
+ */
+public class Demo3 {
+
+	public static void main(String[] args) throws IOException  {
+		File writeFile = new File("product.txt");
+		
+		if(writeFile.exists()) {
+			System.out.println("File :"+writeFile.getName()+ "  exists. please give a new file name");
+
+		}
+		else
+		{
+			FileOutputStream outputStream = new FileOutputStream(writeFile);
+			int res=0;
+			
+			for(int i=65;i<=90;i++)
+					outputStream.write(i);
+			
+			outputStream.close();
+			System.out.println("Saved successfully");
+		}
+	}
+}
+
+
+=========================
+Why we Buffered classes in I/O ?
+
+	BufferedInputStream
+	BufferedOutputStream
+
+
+	BuffereredReader
+	BufferedWriter
+
+	To reduce the time to read/write 
+
+For unbuffered I/O stream, each read or write request is handled directly by the underlying OS. This can make a program much less efficient, since each such request often triggers disk access, network activity, or some other operation that is relatively expensive.
+
+BufferedReader is a class in Java that reads text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, lines and arrays.
+
+package com.training.jwa.iodemos;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Demo4_FileReaderDemo {
+
+	public static void main(String[] args) throws IOException {
+		File readFile = new File("quote.txt");
+		FileReader fr = new FileReader(readFile); // characters streams
+		BufferedReader br = new BufferedReader(fr);
+		int res = 0;
+
+		while ((res = br.read()) != -1) // -1 indicates EOF //reading the file
+			System.out.print((char) res);
+
+		br.close();
+		fr.close();// closing the file
+
+	}
+}
+
+
+------------
+
+package com.training.jwa.iodemos;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Demo4_FileReaderDemo4 {
+
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(new File("quote.txt")));
+		int res = 0;
+
+		while ((res = br.read()) != -1) // -1 indicates EOF //reading the file
+			System.out.print((char) res);
+
+		br.close();
+
+	}
+}
+
+
+
+What is seralization in java ?
+=======================
+**Serialization can be done only using byte streams
+** characters streams does not support this. 
+
+it is process of saving and retriving objects to a file.
+
+
+Serializable
+
+
+Which classes are used for serialization ?
+
+
+
+
+package com.training.jwa.iodemos;
+
+import java.io.Serializable;
+
+//POJO/BEANS
+public class Product implements Serializable{
+		private int productId;
+		private String productName;
+		
+		
+		public Product(int productId, String productName) {
+			super();
+			this.productId = productId;
+			this.productName = productName;
+		}
+
+
+		public int getProductId() {
+			return productId;
+		}
+
+
+		public void setProductId(int productId) {
+			this.productId = productId;
+		}
+
+
+		public String getProductName() {
+			return productName;
+		}
+
+
+		public void setProductName(String productName) {
+			this.productName = productName;
+		}
+
+
+		@Override
+		public String toString() {
+			return "Product [productId=" + productId + ", productName=" + productName + "]";
+		}
+		
+		
+}
+
+
+---------
+
+package com.training.jwa.iodemos;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class Client {
+
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		Product product = new Product(17151, "HpLaptop");
+		
+		ObjectOutputStream out = 
+						new ObjectOutputStream(
+						new BufferedOutputStream(
+						new FileOutputStream(
+						new File("pr.txt"))));
+		out.writeObject(product);
+		
+		out.close();
+		System.out.println("Saved successfully");
+	}
+
+}
+
+
+Which classes are used for serialization in java ?
+ObjectInputStream and ObjectOutputStream
+
+
+
+
+-----------------------------------------------------------
+SQL
+
+Do they understand about the Data Objects & Structure? (Tables, Views, Stored Procedures, Functions, Triggers etc.) DCL, DDL and DML
+Querying Knowledge – Validate through Group By, Distinct, Union, Joins etc.
+Define Normalization/DeNormalization
+How does index help in Query performance?
+Define functions  - Aggregate/Scalar etc.
+Joins - Inner, Outer, Left, Right 
+
+SQL - Structured Query Language
+
+
+
+Alex	12182127128	Gerogia		Travelling		Java
+
+
+
+
+Define Normalization
+
+
+What is normalization ?
+process of removing data redundancy i.e duplicates
+.Normalization rules divides larger tables into smaller tables and links them using relationships. 
+The purpose of Normalisation in SQL is to eliminate redundant (repetitive) data and ensure data is stored logically.
+
+
+What are the benefit of normalization ?
+It is used to remove redundancy
+It helps us to prevent different anomalies like update,delete and insert.
+data will be stored more logically
+
+
+
+What are the different NF (normal forms) ?
+
+
+List one point for each normal forms ?
+
+1 NF:
+1NF (First Normal Form) Rules
+Each table cell should contain a single value.
+Each record needs to be unique.
+
+
+2 NF
+Rule 1- Be in 1NF
+Rule 2- Single Column Primary Key that does not functionally dependant on any subset of candidate key relation
+
+
+3 NF
+Rule 1- Be in 2NF
+Rule 2- Has no transitive functional dependencies
+
+
+BCNF
+Rule 1- Be in 3NF
+Rule 2- Should not have more than 1 candidate key
+
+DeNormalization
+	
+reduce the number of tables to increase the speed of retrival of data.
+
+
+------------------------------------------------------------------------------------------------------------
+
+What are the sub languages of SQL ?
+
+
+DDL – Data Definition Language.
+create,alter,drop,truncate, rename
+
+DML – Data Manipulation Language.
+insert, delete, update
+
+
+DRL/DQL – Data Retrieval Language/Data Query Language.
+select
+
+TCL – Transaction Query Language.
+commit, rollback, savepoint, ROLLBACK TO 
+
+DCL – Data Control Language.
+grant, revoke
+
+================================================================
+
+DRL/DQL – Data Retrieval Language/Data Query Language.
+select
+
+Postgres
+DBeaver
+
+
+
+
+
+
 
 
 
