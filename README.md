@@ -2277,7 +2277,9 @@ ObjectInputStream and ObjectOutputStream
 -----------------------------------------------------------
 SQL
 
-Do they understand about the Data Objects & Structure? (Tables, Views, Stored Procedures, Functions, Triggers etc.) DCL, DDL and DML
+Do they understand about the Data Objects & Structure? 
+(Tables, Views, Stored Procedures, Functions, Triggers etc.) 
+DCL, DDL and DML
 Querying Knowledge – Validate through Group By, Distinct, Union, Joins etc.
 Define Normalization/DeNormalization
 How does index help in Query performance?
@@ -2452,6 +2454,8 @@ select *  from employees e where job_id in ('IT_PROG', 'PU_CLERK','PU_MAN')
 
 
 
+debug/appState?dev=5
+/?dev=75
 
 
 
@@ -2460,19 +2464,171 @@ select *  from employees e where job_id in ('IT_PROG', 'PU_CLERK','PU_MAN')
 
 
 
+QC :: 
+
+Fri 7/29/2022, 1:00 PM to Fri 7/29/2022, 3:00 PM
+
+
+
+BugCatcher ::
+
+https://bugcatcher-primer.coe.revaturelabs.com/?dev=50
 
 
 
 
+//*[@id="root"]/nav/p
+
+
+
+    
+    Examples:
+        | username   | password | role    | fname   | lname     |
+        | g8tor      | chomp!   | Manager | Patty   | Pastiche  |
+        | ryeGuy     | coolbeans| Tester  | Fakey   | McFakeFace|
+        | cavalier89 | alucard  | Tester  | Dracula | Fangs     |
+//*[@id="root"]/nav/p
+
+
+
+Joins
+===========
+--A JOIN clause is used to combine rows from two or more tables, 
+--based on a related column between them
+
+
+
+--inner join (by default - inner join )
+---which displays matching data
+--The INNER JOIN keyword selects all rows from both the tables as long as the condition is satisfied. 
+---This keyword will create the result-set by combining all rows from both the tables
+--- where the condition satisfies i.e value of the common field will be the same.
+ 
+
+select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e join departments d 
+on e.department_id  = d.department_id  
 
 
 
 
+------------------------------------------------------------
+outer join
+   right outer join
+   left outer join
+   full outer join
+   
+   Outer joins are joins that return matched values and unmatched values from either or both tables.
+   
+   show unmatched data also
+   
+ * few employees who does not belong to any department
+ * few departments where no employees has been allocated
+ 
+select * from employees e where department_id is null;
+   
+select * from departments d ;
+
+-left outer join
+
+select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e left outer join departments d 
+on e.department_id  = d.department_id  
+   
+ -right outer join  
+ select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e right outer join departments d 
+on e.department_id  = d.department_id   
+   
+
+ -full outer join  
+ select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e full outer join departments d 
+on e.department_id  = d.department_id 
+
+
+** What is the difference between inner join and outer join ?
+
+An inner join focuses on the commonality between two tables. When using an inner join, there must be at least some matching data between two (or more) tables that are being compared. 
+An outer join returns a set of records (or rows) that include what an inner join would return but also includes other rows for which no corresponding match is found in the other table.
+
+
+------------------------------------------------------
+
+Set operators
+
+Union   - duplicates will be displayed only once
+union all	- all the data from two tables - including duiplicates
+intersect - will display the data which is available in both the tables
+minus - not supported in postgres -  all the data from first table which is not available in second table **
+
+** some rules 
+
+table structure must be same
+
+
+Set operators are used to combine results from two or more SELECT statements. They combine the same type of data from two or more tables. This looks similar to SQL joins although there is a difference. SQL joins are used to combine columns whereas Set operators are used to join rows from multiple SELECT queries.
 
 
 
+DML
+-------------
+
+Data manipulation Language
+
+insert,delete, update (changing the data)
+
+insert- add a row
+delete - delete one or multiple or all the rows
 
 
+DDL
+-----
+
+Data Definition Language
+
+create , alter (change the structure like add a column, drop a column, change the datatype of column, rename columns)
+
+drop - remove a table i.e both structure and the data gets removed from db
+
+truncate : remove all the data . but will not remove the structure
+
+
+** Difference between delete and truncate
+
+1) delete is DML command and truncate is DDL command
+2) delete , you can delete one or many records, but with truncate, all the records will gets deleted
+3) tuncate is faster than delete 
+
+
+Constraints - Restrictions
+-----------------------------------
+
+primary key	- not accept duplicate value
+foreign key	-
+Referential integrity	
+- A foreign key constraint signifies that a column represents a reference to the primary key of another table.
+ This allows us to create relationships between tables. 
+
+check
+not null
+unique
+default
+
+
+
+What is difference between primary key and unique constraint ?
+Ans : primary key does not accept any null value. Unique constraint can accept NULL values
+
+
+------------
+Views, Stored Procedures, Functions, Triggers etc.
+
+
+Views : Temporary table , used to view specific data
+
+
+Views are virtual tables - they are constructed from DQL queries and provide a window or "view" into the table. Views can be used to provide access to some portion of the data in a table but not all, which might be useful if the data is sensitive and needs to be kept private. Views are also used to abstract or hide complexity in the database - a view could be constructed with joins over multiple tables so that end users can query from denormalized tables easily. Users can query views just as if they were normal tables. Changes to the underlying table will be reflected in the view whenever it is queried next.
 
 
 

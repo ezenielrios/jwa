@@ -1,0 +1,433 @@
+select * from employees;
+
+select employee_id ,first_name ,salary  from employees;
+
+--where clause is used for conditions
+
+select employee_id ,first_name ,salary,manager_id  from employees where salary > 15000
+
+--and operator or
+
+select employee_id ,first_name ,salary  
+from employees
+where salary > 15000
+and manager_id =100
+
+
+select employee_id ,first_name ,salary ,manager_id
+from employees
+where salary > 15000
+or manager_id =100
+
+
+select * from departments d ;
+
+select department_name ,manager_id  from departments d ;
+
+select department_name ,manager_id  from departments d where department_name = 'Payroll';
+
+---
+---get me all the details about country - US
+-- Use contries table
+select * from countries where country_name = 'US';
+
+
+----WAQ to get employees names,salary,hire_date,job_id who got hired after 31-Dec-2005
+Select * from employees where hire_date >= '31-DEC-05'
+Select * from employees where hire_date > '31-12-05'
+select first_name, last_name, hire_date, job_id
+from employees e
+where hire_date > '31-12-05'
+
+----WAQ to get employees names,salary,hire_date,job_id who is reporting to manager 103
+select first_name,last_name,salary,hire_date,job_id from employees where manager_id =103;
+
+
+----WAQ to get employees names,salary,hire_date,job_id who works in department 60 ,90 or 100
+select "FIRST_NAME" , "LAST_NAME" ,"SALARY" ,"HIRE_DATE" ,"JOB_ID"  from employees e where "DEPARTMENT_ID" in ('60', '90','100');
+Select * from employees where department_id='60' or department_id='90' or department_id='100';
+
+
+---------is , is not null, is null, like , in, not in, between
+
+select * from employees e where commission_pct is null;
+
+select * from employees e where manager_id  is null;
+
+select * from employees e where commission_pct is not null;
+
+select * from employees e where first_name like 'A%';
+
+select * from employees e where first_name like '%a';
+
+
+select * from employees e where first_name like '__a%';
+
+select * from employees e where salary between 5000 and 8000;
+
+----WAQ to print all email(use email column) that starts with D
+select email from employees where email like 'D%'
+
+----WAQ to print all employees details who does'nt assigned a department
+select * from employees where department_id is null;
+
+----WAQ to print all the employees whose employeeid is between 150 and 200
+select *  from employees e where EMPLOYEE_ID between 150 and 200;
+
+
+---in 
+
+select *  from employees e where job_id in ('IT_PROG', 'PU_CLERK','PU_MAN')
+
+
+=====================
+-------functions----
+
+select * from employees e ;
+
+select first_name , length(first_name) from employees e ;
+
+select upper(first_name) from employees e ;
+
+select lower(first_name) from employees e ;
+
+
+select * from departments d 
+select * from departments d where department_name = 'Sales'
+
+
+select * from departments d where upper(department_name) = 'PAYROLL'
+
+select * from employees e  where lower(first_name) = 'david'
+
+----------------Aggregate functions 
+
+select sum(salary), avg(salary),min(salary),max(salary),count(salary),count(*) from employees 
+
+select first_name ,salary  from employees e where salary is null;
+
+----
+---what is the use of distinct keyword in sql ?
+---unique values
+--
+you may want to get only distinct values in a specified column of a table. To do this, you use the SELECT DISTINCT clause as follows:
+select job_id from employees e ;
+select distinct (job_id) from employees e ;
+
+select count(EMPLOYEE_ID) from employees e ;
+
+---- error
+select first_name, salary from employees e where salary > avg(salary)
+----solution : group by (later)
+select first_name, salary from employees e
+group by first_name 
+
+select distinct job_id from employees e ;
+
+select first_name, last_name from employees where commission_pct  is null;
+
+
+****
+-----------------GROUP BY clause
+--The GROUP BY clause is a SQL command that is used to group rows that have the same values. 
+--The GROUP BY clause is used in the SELECT statement alongwith aggregate functions
+ 
+select sum(salary) from employees e 
+
+
+---I want sum of salary department wise
+--sum of salary in each department 
+select department_id "Department_Id" ,sum(salary) "Sum of salary" from employees e 
+group by department_id ;
+
+---I want the avg salary in a department
+select department_id ,avg(salary) from employees e 
+group by department_id ;
+
+
+-----------WAQ to find out how many employees are working for each managers ??
+Manager-Id  Number of Employees working  
+10978		89
+18716		2
+
+select manager_id "Manager-ID", count(employee_id) "Number of employes working"
+from employees e
+group by manager_id;
+
+----having clause
+--The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+-- The having clause we can use only with group by clause
+
+select manager_id "Manager-ID", count(employee_id) "Number of employes working"
+from employees e
+group by manager_id
+having  count(employee_id) >=8
+
+
+select * from employees;
+
+---job-id wise employee count ??
+
+AD_PRES - 1
+AD_VP   - 2
+IT_PROG - 98
+??
+
+select job_id, count(employee_id)from employees e group by job_id;
+
+** Can we do multiple column group by ?
+--yes 
+
+--- Find out job_id's count in each department
+select job_id, department_id , count(employee_id)from employees e group by job_id,department_id;
+
+-------------order by clause - sort 
+
+
+select job_id, department_id , 
+count(employee_id)from employees e 
+group by job_id,department_id
+order by job_id 
+
+select job_id, department_id , 
+count(employee_id)from employees e 
+group by job_id,department_id
+order by department_id  
+
+------------------------------------------------------
+---------- joins
+
+--A JOIN clause is used to combine rows from two or more tables, 
+--based on a related column between them
+
+--types of join
+--natural join
+
+select * from employees e natural join departments d ;
+
+select employee_id ,first_name ,last_name ,salary,department_name,location_id 
+from employees e natural join departments d ;
+
+select employee_id ,first_name ,last_name ,salary,department_name,location_id 
+from employees e natural join departments d ;
+
+
+----WAQ to find out location_id,city, country_name 
+select location_id, city, country_name from locations l natural join countries c;
+
+
+--inner join (by default - inner join )
+---which displays matching data
+--The INNER JOIN keyword selects all rows from both the tables as long as the condition is satisfied. 
+---This keyword will create the result-set by combining all rows from both the tables
+--- where the condition satisfies i.e value of the common field will be the same.
+ 
+--using 
+-- is used to specify the column column name by which you want to join the table
+select employee_id ,first_name ,last_name ,salary,department_name,location_id 
+from employees e join departments d 
+using (manager_id) 
+
+--ON -- is used to specify the column name
+select employee_id ,first_name ,last_name ,salary,department_name,location_id 
+from employees e  join departments d 
+on e.manager_id  = d.manager_id 
+
+select employee_id ,first_name ,last_name ,salary,department_name,location_id 
+from employees e join departments d 
+on e.department_id  = d.department_id  
+
+
+
+
+
+select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e join departments d 
+on e.department_id  = d.department_id  
+
+
+
+
+-------------------------------------------------------------
+outer join
+   right outer join
+   left outer join
+   full outer join
+   
+   Outer joins are joins that return matched values and unmatched values from either or both tables.
+   
+   show unmatched data also
+   
+ * few employees who does not belong to any department
+ * few departments where no employees has been allocated
+ 
+select * from employees e where department_id is null;
+   
+select * from departments d ;
+
+-left outer join
+
+select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e left outer join departments d 
+on e.department_id  = d.department_id  
+   
+ -right outer join  
+ select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e right outer join departments d 
+on e.department_id  = d.department_id   
+   
+
+ -full outer join  
+ select e.employee_id ,e.first_name ,e.last_name ,e.salary,d.department_name,d.location_id 
+from employees e full outer join departments d 
+on e.department_id  = d.department_id 
+
+
+** What is the difference between inner join and outer join ?
+
+An inner join focuses on the commonality between two tables. When using an inner join, there must be at least some matching data between two (or more) tables that are being compared. 
+An outer join returns a set of records (or rows) that include what an inner join would return but also includes other rows for which no corresponding match is found in the other table.
+
+
+
+
+--------------
+Hands - On
+select * from job_history j;
+select * from employees e ;
+
+
+employeeid, first_name,last_name,salary,job_id - and display all the data irrespective of matching data in other table or not ?
+
+select e.employee_id, e.first_name, e.last_name, e.salary, jh.job_id 
+from employees e full outer join job_history jh on e.job_id  = jh.job_id ;
+
+
+select *
+from employees e full outer join job_history jh on e.job_id  = jh.job_id ;
+
+
+-------
+select * from countries c ;
+select * from locations l  ;
+
+country_id,city,country_name
+
+
+select c.country_id, l.city, c.country_name from countries c 
+full outer join locations l on c.country_id = l.country_id
+
+
+
+self join
+---------------
+joins the same table (one table)
+ As the name signifies, in SELF JOIN a table is joined to itself
+select * from employees e ;
+
+
+Neena reports to Steven
+
+..
+Shelli reports to Den
+
+select worker.first_name || ' reports to ' || manager.first_name
+from employees worker join employees manager
+on worker.manager_id  = manager.employee_id  
+
+select upper(e1.first_name || ' reports to ' || e2.first_name)
+from employees e1 join employees e2
+on e1.manager_id  = e2.employee_id  
+
+
+
+
+
+-------------
+select * from employees e ;
+select * from  retired_employees re;
+
+create table retired_employees as
+select * from employees e where employee_id in(105,106,107);
+
+
+delete from employees where employee_id in(105,106);
+
+
+employees
+	105	X
+	106	X
+	
+retired_employees
+	105
+	106
+	107	// (avaiable in both - common)
+	
+	What are set operators
+	
+	--Set operators are used to combine results from two or more SELECT statements. They combine the same type of data from two or more tables. 
+--union -- The UNION command combines the result set of two or more SELECT statements (only distinct values).
+select * from employees e 
+union
+select * from  retired_employees re
+order by employee_id ;
+
+--union all a+b -- The UNION all command combines the result set of two or more SELECT statements .. all the values, including duplicates
+select * from employees e 
+union all
+select * from  retired_employees re
+order by employee_id ;
+
+
+--intersect - will display the data which is available in both the tables
+select * from employees e 
+intersect
+select * from  retired_employees re
+order by employee_id ;
+
+--minus - will display the data from first table - second table
+select * from employees e 
+minus
+select * from  retired_employees re
+order by employee_id ;
+
+
+-----
+select * from employees e ;
+
+create view myemp
+as
+select employee_id ,first_name ,email ,salary from employees e 
+where salary > 5000 and job_id = 'IT_PROG'
+
+
+select * from myemp;
+
+create view workerandmanager
+as
+select upper(e1.first_name || ' reports to ' || e2.first_name)
+from employees e1 join employees e2
+on e1.manager_id  = e2.employee_id  
+
+select * from workerandmanager;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
