@@ -295,6 +295,11 @@ public class ScopeVariableDemo {
 		int result =299;		//local scope
 		
 	}
+	public static void main(int num)
+	{
+		int result =299;		//local scope
+		
+	}
 }
 
 </pre>
@@ -1545,11 +1550,7 @@ public abstract class Animal {
 public class Dog extends Animal {
 	
 }
-
-
 Animal a = new Animal();	//not possible to create an object of abstract class
-
-
 
 Interface
 ----------------------------
@@ -1560,10 +1561,7 @@ we use implements keyword to inherit
 By interface , we can achieve multiple inheritance
 
 You cannot create an object of interfaces
-
 ---------------------------------
-
-
 What is the difference between overloading and overriding ?
 
 Overloading : method having same name but different parameters
@@ -1819,7 +1817,7 @@ Do you know about Collections?
 What is the difference between List and Set?
 Difference between List and Set:
 
-List	Set
+List				Set
 1. The List is an indexed sequence.	1. The Set is an non-indexed sequence.
 2. List allows duplicate elements	2. Set doesn’t allow duplicate elements.
 3. Elements by their position can be accessed.	3. Position access to elements is not allowed.
