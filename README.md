@@ -144,7 +144,7 @@ By using abstract class
 Real time example 
 1. Applying brakes
 2. Switching on our laptop/computer system
--- in java , we implement abstractingby interfaces and abstract classes (details in week2)
+-- in java , we implement abstracting by interfaces and abstract classes (details in week2)
 
 Encapsulation
 ---------------
@@ -677,6 +677,9 @@ Selenium can test both Web and Desktop Applications. Is the statement correct? N
 
 
 
+driver.manage().timeouts().implicitlyWait	
+explicit= WebDriverWait wait = new WebDriverWait(driver,  )
+
 
 
 
@@ -981,10 +984,10 @@ public class LoginTest {
 Q&A
 
 
-What is  BDD and TDD?
+What is  BDD and TDD?		
  Explain Cucumber shortly.
  What language is used by Cucumber?
-What is meant by a feature file?
+What do you mean by a feature file?
 What are the various keywords that are used in Cucumber for writing a scenario?
 What is the purpose of a Scenario Outline in Cucumber?
  What programming language is used by Cucumber?
@@ -993,6 +996,19 @@ What are the major advantages of the Cucumber framework?
  What symbol is used for parameterization in Cucumber?
  What is the file extension for a feature file?
  Explain the purpose of keywords that are used for writing a scenario in Cucumber.
+
+Given : Given defines a precondition to the test
+When When keyword defines the test action that will be executed. 
+Then keyword defines the Outcome of previous steps. 
+And keyword is used to add conditions to your steps. 
+Scenario : Each test is called a Scenario and is described using the Scenario: keyword.
+Scenario Outline : In situations where one wants to execute the same Scenario with various combinations of values or arguments, one could use the Scenario Outline.
+Background keyword is used to define steps that are common to all the tests in the feature file
+Examples :  The multiple arguments passed against the same scenario outline are called Examples which is another keyword in Cucumber.
+
+
+What is the use of background in cocumber ?
+
 
 Given
 When
@@ -1475,8 +1491,6 @@ User-Acceptance Testing	Ensures the software meets the requirements of the clien
 Stress Testing	Ensures that the performance of the software doesn’t degrade when the load increases. In stress testing, the tester subjects the software under heavy loads, such as a high number of requests or stringent memory conditions to verify if it works well.
 Usability Testing	Measures how usable the software is. This is typically performed with a sample set of end-users, who use the software and provide feedback on how easy or complicated it is to use the software. 
 Security Testing	Now more important than ever. Security testing tries to break a software’s security checks, to gain access to confidential data. Security testing is crucial for web-based applications or any applications that involve money. 
-
-
 What is regression testing in software testing?
 What is end-to-end testing?
 What is unit testing?
@@ -2629,6 +2643,302 @@ Views : Temporary table , used to view specific data
 
 
 Views are virtual tables - they are constructed from DQL queries and provide a window or "view" into the table. Views can be used to provide access to some portion of the data in a table but not all, which might be useful if the data is sensitive and needs to be kept private. Views are also used to abstract or hide complexity in the database - a view could be constructed with joins over multiple tables so that end users can query from denormalized tables easily. Users can query views just as if they were normal tables. Changes to the underlying table will be reflected in the view whenever it is queried next.
+
+
+---------------------------
+
+Topics	Details
+Software Lifecycle	"SDLC - Agile or Waterfall Awareness
+Exposure to requirements gathering, architecture, design, code, test, implement, maintenance
+Analyzing Business Problem and explaining the requirements and technical specification (Use Case / User Story, Technical Story)
+DevOps Concepts (CI/CD), BDD and TDD
+"
+Testing Concepts	"Test Lifecycle (STLC), Types of testing (Smoke Test, Functional, System, SIT, UAT, NFT) 
+Test Plan/ Test Strategy ( in Waterfall and Agile) 
+Test Design - How do you do?   How do you maintain traceability? Test Envionments and Test Data?
+Test Execution and Reporting 
+Defect Lifecycle - Severity Vs Priority
+GUI, WEB, Mobile Testing"
+Programming Concepts	"Understanding of JDK, JVM, JRE - What are the IDEs that they have used in their internship or college projects?
+Can they list down the data types? Look for the unique ones - Float & Double
+OOPS concepts (Class, Objects, Encapsulation, Polymorphism, Inheritence, Abstraction)
+     Exception Handling - Errors, Checked Exception, Unchecked Exception, Throws Vs Throw
+      FilHandling Classes - FileInputStream,OutputStream,Reader,Writer etc.. Cover        Characterstream/StringBuffer/bitstream etc.
+   Arrays, ArrayList & linkedList
+JavaScript -  Data Types, Variables, Scoping, Promises, Async/Awaits
+Automation  -  Selenium, Page Object Model and questions related to automation framework  
+Give a sample program to understand they approach and use the logic/syntax (e.g. Number, String related)"
+Database	"Do they understand about the Data Objects & Structure? (Tables, Views, Stored Procedures, Functions, Triggers etc.) DCL, DDL and DML
+Querying Knowledge – Validate through Group By, Distinct, Union, Joins etc.
+Define Normalization/DeNormalization
+How does index help in Query performance?
+Define functions  - Aggregate/Scalar etc.
+Joins - Inner, Outer, Left, Right 
+"
+Debugging / Troubleshooting	"How do you tackle a bug/problem?
+What debugging tools did you use before?
+Look for orderly thought process
+Look for thought process towards end-user interaction, reproducing the bug, log file analysis, verification
+"
+Industry Awareness / Tools	"TOOLS - Jira, GITHUB, Maven, Jenkins, HP ALM
+Cloud Technologies - GCP, Azure, AWS any other?
+AI, ML, VR, AR
+Code Review / Quality
+Mobile - Appium, Saucelab, Perfecto 
+"
+
+SDLC
+=======
+# SDLC = Software Development LifeCycle
+
+a) Process for planning, creating, testing, and displaying information systems.
+b) SDLC is a disciplined and systematic approach that divides the software development process into various phases, such as requirements, design, and coding. 
+
+Benefits of following SDLC ?
+The phase-wise software development process helps you track schedule, cost, and quality of the software projects. 
+
+
+
+## General Steps
+1. Requirements Phase
+    - Existing system is evaluated so that the existing flaws can be determined
+    - Performed by Business Analysts (BAs)
+    - Could be as simple as saying "The current flaw is that it doesn't exist"
+        - Move on to outline what is needed
+2. Analysis Phase
+    - The new system requirements are defined. In particular, deficiencies are addressed with proposal for improvement
+    - BAs + Senior members of the team
+3. Design Phase
+    - The proposed system is actually designed
+    - No coding is done yet, the product features are planned out
+    - Architects and Senior Devs
+4. Development Phase
+    - Software is built
+    - Code for the product is actually written
+    - Junior & Senior Devs, etc
+5. Testing Phase
+    - Software is tested to ensure it functions as intended
+    - Devs & Testers
+6. Deployment & Maintenance Phase
+    - Product is delivered/deployed to the customer
+    - Maintenence is rigorously kept up
+    - Operations Team / DevOps Engineers / SREs
+
+
+RADDTD
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is a high level description of what steps we take during the SDLC. The specific details will often vary, depending on which implementation you use to follow the SDLC.
+
+## Waterfall Method
+
+Is a traditional way of following the SDLC
+The idea is that you completely finish one phase of the before moving on to the next
+You do not return to any previous phase at any point (until the cycle is complete)
+
+- Progress is seen as only going "downwards"
+- Best suited for smaller, short term projects or where project requirements do not change (such as Government Projects)
+- Generally considered not as efficient money-wise
+- Cannot go back up the waterfall
+    - Considered inflexible
+- The benefits are that you get a full outline of the plan before you start
+    - This can really help in terms of organization
+
+
+
+
+## Agile Method
+
+- Another method for following the SDLC
+- An approach to Software Development based on iterative development where requirements and solutions evolve through the collaboration of cross-functional teams
+- Agile is more of a mentality or a philosophy
+    - It is not "a thing that you do", but more of a mindset or an approach to software development
+- Four core values to Agile (From Agile Manifesto)
+    1. Individuals and Interactions over processes and tools
+    2. Working software over comprehensive documentation
+        - We are not "abandoning documentation"
+        - Documentation is still incredibly important
+    3. Customer Collaboration over contract negotation
+    4. Responding to change over following a plan
+
+- There are Agile methods (often called frameworks), which are comprehensive approaches to the SDLC
+    - "Scrum" is the most common Agile Framework
+        - Not the only one
+        - (SAFe = Scaled Agile Framework)
+- Agile practices (listed below) are closely tied to DevOps
+    - CI/CD or CI/CD/CD
+    - Continuous Integration (CI)
+        - The idea or process or practice of continuously merging multiple developer's code (usually in a repository) *frequently*
+        - This should be MULTIPLE times a day. It is meant to prevent large errors from accumulating. The sooner you find them, the sooner they will be fixed
+    - Continuous Delivery (CD)
+        - Automate the testing of your code, and the process we use to prepare our code so that we can deploy the code "at the push of a button"
+        - Generally, we have a big "release day"
+    - Continuous Deployment (CD)
+        - Every change that passes all stages of the product pipeline (various tests, quality checks, etc) is released to the customer immediately. There is no "release day".
+        - This is particularly valuable because it speeds up feedback from the customer
+
+## Agile Scrum Methodology
+- In a "Scrum", the project is divided into what are called "sprints"
+- Sprint
+    - A specified timeline (generally 2 weeks, but could be 1 - 4 weeks)
+    - Timeline is agreed upon during a "Sprint Planning Meeting"
+- User Story
+    - Informal, natural language sentence/description of one or more features
+    - It is usually written from the perspective of a user
+        - "As a User, when on on the login page, I can enter a valid username and password, and be redirected to my profile page"
+    - These are agreed upon and split during the Sprint Planning Meeting
+- Epic
+    - A large body or collection of user stories that can be broken down further
+
+### Roles
+- Scrum Master
+    - Facilitator for the Scrum devleopment team
+    - Clarifies questions and organize the team and focuses on the return on investment
+- Product Owner
+    - Usually the client and they will act as a point of contact from the client side
+    - Prioritize the product backlog and when the scrum team should finish and release
+- Scrum Dev Team: Devs & QA
+    - This is the team that decides "effort estimation" to complete a product backlog item
+    - Often uses "User Story Points" or just "Story Points" to describe an amount of effort for a user story
+- Scrum Team
+    - Product Owner + BAs + Devs + QA + Scrum Master
+    - Recommended Size is 5 - 9
+
+### Artifacts
+- Product Backlog
+    - This is a repository where the items that product owner wants to accomplish are kept
+    - Trello, Asana, JIRA, etc
+        - Some Kanban Board
+- Sprint Backlog
+    - A subset of the product backlog that contains the items to be completed during the current sprint
+- Burndown Chart (Burnup chart)
+    - Graph that shows how many user stories (or story points) are left to complete during the sprint
+        - Burnup chart would be how many are completed so far
+    - Often use this to calculate the overall "velocity" for a sprint
+    - Velocity is the number of story points completed over time
+        - Could be total story points completed per 2 week sprint
+
+### Meetings
+- Sprint Planning Meeting
+    - Plan for what you will accomplish during that sprint
+    - Can be several hours in some cases
+- Daily Standup Meeting
+    - Short meeting (like 15 minutes at most) that happens once a day for the scrum team
+    - You talk about what you did yesterday, what you plan to do today, and if you have any "blockers"
+        - A particular person or group who you are waiting on
+    - Generally led by the Scrum Master
+- Sprint Review Meeting
+    - Happens at the end of a sprint
+    - You basically showcase the features that were accomplished during the sprint
+    - Decide if the product is complete or if it needs more work
+- Sprint Retrospective Meeting
+    - The scrum team meets and talks about what went well and what went poorly
+    - What can be done to improve?
+    - What did you learn?
+    - etc
+
+
+
+
+Dev 		Ops
+==========================
+
+# DevOps
+
+DevOps is a blend between CS and IT. In the context of SREs, you're the bridge between Developers and the production environment. Not strictly application developers or purely operations of the production environment. SREs act as the in-between.
+
+To start off, the term "DevOps" comes from the combination of two teams: Development and Operations.
+
+The Development team focused on developing an application. They are interested in creating new features to be used by the end users.
+
+The Operations team were the IT part, focusing on the production environment, and making sure that the application that was developed is actually available to the end users.
+
+Historically, there has been a lot of friction between Development and Operations teams.
+ The Development team wants rapid changes and high velocity, whereas the Operations team wants a static production environment to reduce the chances of any change dropping the availability of the application.
+
+Due to this difference in perspective, Operations teams tended to enforce miscellaneous requirements on the Development team, which lead to poor programmming practices, such as feature flags/switches, amongst others.
+
+This can lead to some unforseen issues.
+
+When combined with manual deployment processes that are prone to human error, to lead to massive outages and losses of money.
+
+
+
+DevOps has the three practices: CI/CD/CD to _automate_ our deployment processes to be as free from human error as possible.
+
+
+Jenkins is a software used by Devops team to create CI/CD pipeline to automate the deployment process
+
+=====================================================================
+
+
+Testing Concepts	"Test Lifecycle (STLC), Types of testing (Smoke Test, Functional, System, SIT, UAT, NFT) 
+Test Plan/ Test Strategy ( in Waterfall and Agile) 
+Test Design - How do you do?   How do you maintain traceability? Test Envionments and Test Data?
+Test Execution and Reporting 
+Defect Lifecycle - Severity Vs Priority
+GUI, WEB, Mobile Testing"
+
+
+
+==================================
+
+
+What is testing ?
+What is junit ? 
+List out junit annotations ?
+Test Lifecycle (STLC)
+	1)Analysis 2)Test Planning 3)Test Development 4)Environment Setup 5)Test Execution 6)Test Closure
+Types of testing (Smoke Test, Functional, System, SIT, UAT, NFT) 
+
+	Smoke test : to verify the basic functionalities are working or not
+	User Acceptance test :Ensures the software meets the requirements of the clients or users. This is typically the last step before the software is live
+	Regression Test : to check whether the new implementation has not affected the system
+
+Manual vs Automated Testing :
+
+
+Selenium :
+
+What is selenium ?
+What are locators ?
+What is xpath ?
+What implicit and explicit wait?
+What do handle multiple windows testing ?
+What is Page Model Model (POM) ?
+What is WebDriver ?
+How do setup driver in selenium ?
+
+
+Cucumber
+Gherkin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
