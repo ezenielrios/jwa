@@ -1198,7 +1198,7 @@ User Testing.
 
 
 11. User Acceptance Testing  (UAT)
-Acceptance testing is done by the customers to check whether the delivered products perform the  desired tasks or not, as stated in requirements. 
+User Acceptance testing is done by the customers to check whether the delivered products perform the  desired tasks or not, as stated in requirements. 
 
 Software testing can be divided into two steps: 
 1. Verification: it refers to the set of tasks that ensure that the software correctly implements a specific function. 
@@ -2610,7 +2610,7 @@ truncate : remove all the data . but will not remove the structure
 
 1) delete is DML command and truncate is DDL command
 2) delete , you can delete one or many records, but with truncate, all the records will gets deleted
-3) tuncate is faster than delete 
+3) truncate is faster than delete 
 
 
 Constraints - Restrictions
@@ -2644,6 +2644,10 @@ Views are virtual tables - they are constructed from DQL queries and provide a w
 
 
 ---------------------------
+Stored Procedures, Functions, Triggers etc.
+
+
+
 
 Topics	Details
 Software Lifecycle	"SDLC - Agile or Waterfall Awareness
@@ -2921,11 +2925,6 @@ How do setup driver in selenium ?
 
 Cucumber
 Gherkin
-
-
-
-
-
 
 
 
